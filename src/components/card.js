@@ -1,59 +1,77 @@
-import React, { useState } from 'react';
-import { FaHeart, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from "react";
+import { FaHeart, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const CarCard = ({ images, price, title, location, year, distance, owners, date }) => {
+const CarCard = ({
+  images = [],
+  price,
+  title,
+  location,
+  year,
+  distance,
+  owners,
+  date,
+}) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
 
-  // Navigate to previous image
+  const defaultImage = "https://via.placeholder.com/300x200?text=No+Image";
+
   const handlePrev = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
   };
 
-  // Navigate to next image
   const handleNext = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
   };
 
-
-  // Toggle the heart icon's color
   const toggleLike = () => {
     setIsLiked(!isLiked);
   };
 
   return (
     <div
-      className="card"
+      className=" shadow-sm h-100"
       style={{
-        width: '310px',
-        borderRadius: '15px',
-        overflow: 'hidden',
-        boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
-        fontFamily: 'Arial, sans-serif',
+        borderRadius: "12px",
+        overflow: "hidden",
+        width: "300px", // Fixed card width
       }}
     >
       {/* Image Carousel */}
-      <div className="position-relative" style={{ height: '200px', backgroundColor: '#f7f7f7' }}>
+      <div
+        className="position-relative"
+        style={{
+          height: "160px", // Reduced height for compact design
+        }}
+      >
         <img
-          src={images[currentImageIndex]}
+          src={images.length > 0 ? images[currentImageIndex] : defaultImage}
           alt={`Car ${currentImageIndex + 1}`}
-          style={{ width: '100%', height: '208px', objectFit: 'cover' }}
+          className="card-img-top"
+          style={{
+            height: "160px",
+            width: "100%",
+            objectFit: "cover",
+          }}
         />
 
         {/* Heart Icon */}
         <FaHeart
-          className="position-absolute"
+          role="button"
+          aria-label="Like"
+          className={`position-absolute ${isLiked ? "text-danger" : "text-white"}`}
           style={{
-            top: '10px',
-            right: '10px',
-            color: isLiked ? 'white' : 'transparent', // Change color based on the liked state
-            border: isLiked ? 'none' : '1px solid #FAFDF6', // Optional border to indicate the heart outline
-            fontSize: '20px',
-            cursor: 'pointer',
-            
+            top: "12px",
+            right: "12px",
+            fontSize: "20px",
+            cursor: "pointer",
           }}
-          onClick={toggleLike} // Handle click vent to toggle the like state
+          onClick={toggleLike}
         />
 
         {/* Navigation Buttons */}
@@ -62,14 +80,24 @@ const CarCard = ({ images, price, title, location, year, distance, owners, date 
             <button
               onClick={handlePrev}
               className="btn btn-sm btn-light position-absolute"
-              style={{ top: '50%', left: '10px', transform: 'translateY(-50%)', borderRadius: '50%' }}
+              style={{
+                top: "50%",
+                left: "8px",
+                transform: "translateY(-50%)",
+                borderRadius: "50%",
+              }}
             >
               <FaChevronLeft />
             </button>
             <button
               onClick={handleNext}
               className="btn btn-sm btn-light position-absolute"
-              style={{ top: '50%', right: '10px', transform: 'translateY(-50%)', borderRadius: '50%' }}
+              style={{
+                top: "50%",
+                right: "8px",
+                transform: "translateY(-50%)",
+                borderRadius: "50%",
+              }}
             >
               <FaChevronRight />
             </button>
@@ -77,41 +105,73 @@ const CarCard = ({ images, price, title, location, year, distance, owners, date 
         )}
       </div>
 
-      {/* New Tag */}
-      {/* <span
-        className="badge bg-warning text-dark"
-        style={{
-          position: 'absolute',
-          top: '10px',
-          left: '10px',
-          padding: '5px 10px',
-          borderRadius: '10px',
-        }}
-      >
-        New
-      </span> */}
-
-      {/* Details Section */}
-      <div className="p-3 bg-light">
-        {/* Price and Timestamp */}
+        {/* Details Section */}
+      <div className="p-3">
+        {/* Price and Date */}
         <div className="d-flex justify-content-between align-items-center mb-2">
-          <h5 className="mb-0 text-dark">₹ {price}</h5>
-          <small className="text-muted">{date}</small>
+          <h6
+            className="mb-0 text-dark"
+            style={{
+              fontWeight: "600",
+              fontSize: "16px",
+            }}
+          >
+            ₹ {price}
+          </h6>
+          <p
+            className="text-muted small mb-0"
+            style={{
+              fontSize: "12px",
+            }}
+          >
+            {date}
+          </p>
         </div>
 
-        {/* Title */}
-        <h6 className="mb-1">{title}</h6>
+        {/* Title, Location, Year-Distance, and Owners */}
+        <div className="d-flex justify-content-between">
+          {/* Left Side: Title and Location */}
+          <div>
+            <h6
+              className="mb-0"
+              style={{
+                fontSize: "14px",
+                fontWeight: "500",
+                color: "#333",
+              }}
+            >
+              {title}
+            </h6>
+            <p
+              className="text-muted small mb-0"
+              style={{
+                fontSize: "12px",
+              }}
+            >
+              {location}
+            </p>
+          </div>
 
-        {/* Location */}
-        <p className="text-muted mb-1" style={{ fontSize: '14px' }}>
-          {location}
-        </p>
-
-        {/* Additional Info */}
-        <p className="text-muted mb-0" style={{ fontSize: '14px' }}>
-          {year} - {distance} km <br />
-          No. of owners: {owners}
-        </p>
+          {/* Right Side: Year-Distance and Owners */}
+          <div className="text-end">
+            <p
+              className="text-muted small mb-0"
+              style={{
+                fontSize: "12px",
+              }}
+            >
+              {year} - {distance} km
+            </p>
+            <p
+              className="text-muted small mb-0"
+              style={{
+                fontSize: "12px",
+              }}
+            >
+              No. of owners: {owners}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

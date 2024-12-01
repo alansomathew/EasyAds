@@ -2,14 +2,14 @@ import React from 'react';
 import AppHeader from '../common/header.js';
 import CarCard from '../components/card.js';
 import CustomNavbar from '../components/navbar.js';
-
+import BikeSection from '../pages/bikesection'; // Import BikeSection
+import HousesSection from '../pages/housesection'; 
+import SectionHeader from '../common/sectionheader';
 const Home = () => {
   // Mock data for a car card
   const carData = [
     {
-      images: [
-        
-      ],
+      images: [],
       price: '7,20,000',
       title: 'Tata Tiago',
       location: 'Mundamveli',
@@ -19,53 +19,72 @@ const Home = () => {
       date: 'Yesterday',
     },
     {
-      images: [
-        'https://via.placeholder.com/300x200?text=Car+A',
-        'https://via.placeholder.com/300x200?text=Car+B',
-      ],
+      images: ['https://via.placeholder.com/300x200?text=Car+A'],
       price: '10,50,000',
       title: 'Honda City',
-      location: 'Kochi',
+      location: 'Mundamveli',
       year: '2019',
       distance: '25,000',
       owners: '1',
       date: 'Today',
     },
     {
-        images: [
-          'https://via.placeholder.com/300x200?text=Car+A',
-          'https://via.placeholder.com/300x200?text=Car+B',
-        ],
-        price: '10,50,000',
-        title: 'Honda City',
-        location: 'Kochi',
-        year: '2019',
-        distance: '25,000',
-        owners: '1',
-        date: 'Today',
-      },
+      images: ['https://via.placeholder.com/300x200?text=Car+B'],
+      price: '10,50,000',
+      title: 'Honda City',
+      location: 'Mundamveli',
+      year: '2019',
+      distance: '25,000',
+      owners: '1',
+      date: 'Today',
+    },
+    {
+      images: ['https://via.placeholder.com/300x200?text=Car+C'],
+      price: '10,50,000',
+      title: 'Honda City',
+      location: 'Mundamveli',
+      year: '2019',
+      distance: '25,000',
+      owners: '1',
+      date: 'Today',
+    },
   ];
 
   return (
-    <div>
+    <div className="container-fluid mx-0 px-0">
       {/* App Header */}
       <AppHeader />
       <CustomNavbar />
 
-      {/* Main Content */}
-      <div className="container mt-4">
-        <h2 className="text-center mb-4">Available Cars</h2>
+      {/* Cars Section */}
+      <div className="container mt-5" style={{ maxWidth: '1312px' }}>
+        <SectionHeader title="Cars" onSeeAll={() => console.log('See All Cars clicked')} />
         <div
-          className="row g-4"
-          style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}
+          className="d-flex overflow-auto"
+          style={{
+            gap: '24px',
+            paddingBottom: '16px',
+          }}
         >
           {carData.map((car, index) => (
-            <div key={index} className="col-md-4 d-flex justify-content-center">
+            <div
+              key={index}
+              style={{
+                flex: '0 0 300px', // Card width
+                height: '303.11px', // Match the height
+              }}
+            >
               <CarCard {...car} />
             </div>
           ))}
         </div>
       </div>
+
+      {/* Bike Section */}
+      <BikeSection />
+
+      {/* Houses Section */}
+      <HousesSection />
     </div>
   );
 };
