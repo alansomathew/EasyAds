@@ -1,176 +1,117 @@
-import React, { useState } from "react";
-import { FaHeart, FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState } from 'react';
+import { FaChevronLeft, FaChevronRight, FaHeart } from 'react-icons/fa';
 
-const CarCard = ({
-  images = [],
-  price,
-  title,
-  location,
-  year,
-  distance,
-  owners,
-  date,
-}) => {
+const CarCard = ({ images, price, title, location, year, distance, owners, date }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
 
-  const defaultImage = "https://via.placeholder.com/300x200?text=No+Image";
-
+  // Handle navigation for the previous image
   const handlePrev = () => {
     setCurrentImageIndex((prevIndex) =>
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
 
+  // Handle navigation for the next image
   const handleNext = () => {
     setCurrentImageIndex((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
   };
 
+  // Toggle like functionality
   const toggleLike = () => {
     setIsLiked(!isLiked);
   };
 
   return (
     <div
-      className=" shadow-sm h-100"
+      className="card shadow-sm"
       style={{
-        borderRadius: "12px",
-        overflow: "hidden",
-        width: "300px", // Fixed card width
+        width: '300px',
+        borderRadius: '12px',
+        overflow: 'hidden',
       }}
     >
       {/* Image Carousel */}
       <div
         className="position-relative"
         style={{
-          height: "160px", // Reduced height for compact design
+          height: '200px',
+          backgroundColor: '#f7f7f7',
         }}
       >
         <img
-          src={images.length > 0 ? images[currentImageIndex] : defaultImage}
+          src={images[currentImageIndex]}
           alt={`Car ${currentImageIndex + 1}`}
-          className="card-img-top"
-          style={{
-            height: "160px",
-            width: "100%",
-            objectFit: "cover",
-          }}
+          className="w-100 h-100"
+          style={{ objectFit: 'cover' }}
         />
-
-        {/* Heart Icon */}
-        <FaHeart
-          role="button"
-          aria-label="Like"
-          className={`position-absolute ${isLiked ? "text-danger" : "text-white"}`}
-          style={{
-            top: "12px",
-            right: "12px",
-            fontSize: "20px",
-            cursor: "pointer",
-          }}
-          onClick={toggleLike}
-        />
-
-        {/* Navigation Buttons */}
         {images.length > 1 && (
           <>
+            {/* Left Arrow */}
             <button
               onClick={handlePrev}
-              className="btn btn-sm btn-light position-absolute"
+              className="btn btn-light btn-sm position-absolute"
               style={{
-                top: "50%",
-                left: "8px",
-                transform: "translateY(-50%)",
-                borderRadius: "50%",
+                top: '50%',
+                left: '10px',
+                transform: 'translateY(-50%)',
+                borderRadius: '50%',
               }}
             >
               <FaChevronLeft />
             </button>
+            {/* Right Arrow */}
             <button
               onClick={handleNext}
-              className="btn btn-sm btn-light position-absolute"
+              className="btn btn-light btn-sm position-absolute"
               style={{
-                top: "50%",
-                right: "8px",
-                transform: "translateY(-50%)",
-                borderRadius: "50%",
+                top: '50%',
+                right: '10px',
+                transform: 'translateY(-50%)',
+                borderRadius: '50%',
               }}
             >
               <FaChevronRight />
             </button>
           </>
         )}
+        {/* Heart Icon */}
+        <FaHeart
+          onClick={toggleLike}
+          className="position-absolute"
+          style={{
+            top: '10px',
+            right: '10px',
+            color: isLiked ? 'red' : 'white',
+            fontSize: '20px',
+            cursor: 'pointer',
+            textShadow: '0px 0px 2px black', // Outline for visibility
+          }}
+        />
       </div>
 
-        {/* Details Section */}
+      {/* Card Details */}
       <div className="p-3">
         {/* Price and Date */}
-        <div className="d-flex justify-content-between align-items-center mb-2">
-          <h6
-            className="mb-0 text-dark"
-            style={{
-              fontWeight: "600",
-              fontSize: "16px",
-            }}
-          >
-            ₹ {price}
-          </h6>
-          <p
-            className="text-muted small mb-0"
-            style={{
-              fontSize: "12px",
-            }}
-          >
-            {date}
+        <div className="d-flex justify-content-between align-items-center">
+          <h5 className="m-0 text-dark">₹ {price}</h5>
+          <small className="text-muted">{date}</small>
+        </div>
+
+        {/* Title and Year-Distance */}
+        <div className="d-flex justify-content-between align-items-center">
+          <h6 className="mt-2 mb-1">{title}</h6>
+          <p className="text-muted small mb-0 text-end">
+            {year} - {distance} km
           </p>
         </div>
 
-        {/* Title, Location, Year-Distance, and Owners */}
-        <div className="d-flex justify-content-between">
-          {/* Left Side: Title and Location */}
-          <div>
-            <h6
-              className="mb-0"
-              style={{
-                fontSize: "14px",
-                fontWeight: "500",
-                color: "#333",
-              }}
-            >
-              {title}
-            </h6>
-            <p
-              className="text-muted small mb-0"
-              style={{
-                fontSize: "12px",
-              }}
-            >
-              {location}
-            </p>
-          </div>
-
-          {/* Right Side: Year-Distance and Owners */}
-          <div className="text-end">
-            <p
-              className="text-muted small mb-0"
-              style={{
-                fontSize: "12px",
-              }}
-            >
-              {year} - {distance} km
-            </p>
-            <p
-              className="text-muted small mb-0"
-              style={{
-                fontSize: "12px",
-              }}
-            >
-              No. of owners: {owners}
-            </p>
-          </div>
+        {/* Location and Owners */}
+        <div className="d-flex justify-content-between align-items-center">
+          <p className="text-muted small mb-0">{location}</p>
+          <p className="text-muted small mb-0 text-end">No. of owners: {owners}</p>
         </div>
       </div>
     </div>

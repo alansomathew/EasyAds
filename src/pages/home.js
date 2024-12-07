@@ -4,6 +4,7 @@ import CustomNavbar from '../components/navbar.js';
 import CarSection from '../section/carsection'; // Import CarSection
 import BikeSection from '../section/bikesection'; // Import BikeSection
 import HousesSection from '../section/housesection'; // Import HousesSection
+import Footer from "../common/footer.js"; // Import the Footer component
 
 const Home = () => {
   return (
@@ -20,6 +21,9 @@ const Home = () => {
 
       {/* Houses Section */}
       <HousesSection />
+
+      {/* Footer */}
+      <Footer /> {/* Call the Footer component here */}
     </div>
   );
 };

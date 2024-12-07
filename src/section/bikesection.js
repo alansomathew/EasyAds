@@ -1,5 +1,4 @@
 import React from 'react';
-import SectionHeader from '../common/sectionheader'; // Reuse SectionHeader
 import CarCard from '../components/card'; // Reuse CarCard for BikeCard
 
 const BikeSection = () => {
@@ -47,33 +46,22 @@ const BikeSection = () => {
     },
   ];
 
-  const handleSeeAll = () => {
-    console.log('See All Bikes clicked');
-  };
-
   return (
-    <div className="container mt-5" style={{ maxWidth: '1312px' }}>
-      {/* Section Header */}
-      <SectionHeader title="Bike" onSeeAll={handleSeeAll} />
-
+    <div className="container mt-4">
+      {/* Section Title */}
+      <h3 className="text-dark fw-bold" style={{ textAlign: 'left' }}>
+          Bikes
+        </h3>
+      
       {/* Horizontal Scrollable Section */}
       <div
-        className="d-flex overflow-auto"
+        className="d-flex gap-4 overflow-auto"
         style={{
-          gap: '24px',
-          paddingBottom: '16px',
+          paddingBottom: "16px",
         }}
       >
         {bikeData.map((bike, index) => (
-          <div
-            key={index}
-            style={{
-              flex: '0 0 300px', // Card width
-              height: '303.11px', // Match the height
-            }}
-          >
-            <CarCard {...bike} />
-          </div>
+          <CarCard key={index} {...bike} />
         ))}
       </div>
     </div>
