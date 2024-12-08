@@ -2,6 +2,7 @@ import './App.css';
 
 
 import Home from './pages/home';
+import ListingPage from './pages/listing';
 
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
     <div className="App">
       <header id="home">
         <Home />
+        <ListingPage />
       </header>
     </div>
   );
