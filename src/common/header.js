@@ -37,63 +37,86 @@ export default function AppHeader() {
             <h1 style={{ fontSize: "1.5rem" }}>EazyAds</h1>
           </Navbar.Brand>
 
-          {/* Search Bar */}
-          <Form className="mx-auto" style={{ width: "50%" }}>
+          <Form className="mx-auto" style={{ width: "60%" }}>
             <InputGroup
               style={{
-                borderRadius: "50px",
-                overflow: "hidden",
-                boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+                borderRadius: "50px", // Rounded edges for the entire search box
+                overflow: "hidden", // Ensures no content spills out
+                boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Subtle shadow
+                backgroundColor: "#F9FAF7", // Light background
               }}
             >
-              {/* Search Location Input */}
+              {/* Left Input: Search Location */}
               <Form.Control
                 type="text"
                 placeholder="Search location"
                 style={{
-                  backgroundColor: "#F9FAF7",
-                  border: "none",
-                  paddingLeft: "20px",
+                  border: "none", // Removes border
+                  padding: "15px 20px", // Increases padding for height
+                  fontSize: "14px", // Adjust font size
+                  height: "50px", // Explicitly sets the height
+                  backgroundColor: "#F9FAF7", // Matches the container background
+                  borderRadius: "50px 0 0 50px", // Rounds the left edges
                 }}
+                className="no-focus-border"
               />
+
               {/* Separator */}
-              <span
-                className="d-flex align-items-center"
+              <div
                 style={{
-                  backgroundColor: "#F9FAF7",
-                  width: "2px",
-                  height: "50%",
+                  width: "1px",
+                  backgroundColor: "#E0E0E0", // Light gray color
                 }}
-              />
-              {/* Search Text Input */}
+              ></div>
+
+              {/* Right Input: Search Cars, Bikes and more */}
               <Form.Control
                 type="text"
                 placeholder="Search Cars, Bikes and more"
                 style={{
-                  backgroundColor: "#F9FAF7",
-                  border: "none",
-                  paddingLeft: "20px",
+                  border: "none", // Removes border
+                  padding: "15px 20px", // Increases padding for height
+                  fontSize: "14px", // Adjust font size
+                  height: "50px", // Explicitly sets the height
+                  backgroundColor: "#F9FAF7", // Matches the container background
                 }}
+                className="no-focus-border"
               />
-              {/* Circular Search Button */}
-              <InputGroup.Text
-                role="button"
-                style={{
-                  backgroundColor: "#FFD700", // Yellow background
-                  border: "none",
-                  borderRadius: "50%", // Circular shape
-                  width: "40px", // Fixed width for circular appearance
-                  height: "40px", // Fixed height for circular appearance
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  cursor: "pointer",
-                  boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)", // Optional shadow
-                }}
-                onClick={() => console.log("Search clicked")}
-              >
-                <FaSearch style={{ color: "white", fontSize: "16px" }} />
-              </InputGroup.Text>
+
+                      {/* Circular Button Container */}
+        <div
+          style={{
+            backgroundColor: "#FFF", // White background
+            borderRadius: "50%", // Circular container
+            padding: "5px", // Space around the yellow circle
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginRight: "10px", // Slight spacing from the search box
+          }}
+        >
+          {/* Circular Button */}
+          <InputGroup.Text
+            role="button"
+            style={{
+              backgroundColor: "#FFD700", // Yellow color
+              border: "none", // No border
+              borderRadius: "50%", // Circular shape
+              width: "40px", // Fixed size
+              height: "40px", // Fixed size
+              display: "flex", // Center the icon
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer", // Makes it clickable
+              boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)", // Shadow for depth
+            }}
+            onClick={() => console.log("Search clicked")}
+          >
+            <FaSearch style={{ color: "white", fontSize: "16px" }} />
+          </InputGroup.Text>
+        </div>
+
+
             </InputGroup>
           </Form>
 

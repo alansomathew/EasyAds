@@ -10,7 +10,6 @@ function App() {
     <div className="App">
       <header id="home">
         <Home />
-        <ListingPage />
       </header>
     </div>
   );
