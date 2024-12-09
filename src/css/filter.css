@@ -1,0 +1,83 @@
+.budget-filter-container {
+    background-color: #f9faf7;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  .budget-filter-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #495057;
+    margin-bottom: 16px;
+  }
+  
+  .range-values {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: bold;
+    color: #005b96;
+    margin-bottom: 8px;
+  }
+  
+  .horizontal-slider {
+    width: 100%;
+    height: 8px;
+    background: #ddd;
+    border-radius: 5px;
+    position: relative;
+  }
+  
+  .track {
+    background: #005b96;
+    height: 100%;
+  }
+  
+  .thumb {
+    height: 20px;
+    width: 20px;
+    background: #005b96;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .thumb-label {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #005b96;
+    color: white;
+    font-size: 10px;
+    padding: 2px 5px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  
+  .budget-filter-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+  
+  .budget-filter-buttons button {
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 24px;
+  }
+  
+  .budget-filter-buttons .btn-outline-primary {
+    color: #005b96;
+    border-color: #005b96;
+  }
+  
+  .budget-filter-buttons .btn-primary {
+    background-color: #005b96;
+    border-color: #005b96;
+  }
+  

@@ -12,6 +12,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import AppHeader from "../common/header"; // Import the AppHeader component
 import Footer from "../common/footer"; // Import the Footer component
 import CustomNavbar from "../components/navbar"; // Import CustomNavbar
+import CarCard from "../components/card";
+import BudgetFilter from "../components/bugetFilter";
 
 const ListingPage = () => {
   // State for filter collapses
@@ -29,6 +31,7 @@ const ListingPage = () => {
   });
 
   const [tags, setTags] = useState(["Cars", "Kochi"]); // Tags state
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   // Toggle filter collapse
   const toggleFilter = (filter) => {
@@ -46,6 +49,10 @@ const ListingPage = () => {
   // Clear all tags
   const clearAllTags = () => {
     setTags([]);
+  };
+
+  const handleDropdownToggle = (isOpen) => {
+    setDropdownOpen(isOpen);
   };
   // Sample car data
   const carData = [
@@ -117,7 +124,7 @@ const ListingPage = () => {
       <AppHeader />
 
       {/* Include CustomNavbar */}
-      <CustomNavbar />
+      <CustomNavbar onDropdownToggle={handleDropdownToggle} />
 
       {/* Breadcrumb */}
       <Container className="mt-4">
@@ -181,7 +188,7 @@ const ListingPage = () => {
       <Container className="mt-3">
         <div
           style={{
-            backgroundColor: "#F9FAF7",
+            backgroundColor: "#FFFFFF",
             padding: "10px",
             borderRadius: "16px",
             display: "flex",
@@ -246,15 +253,17 @@ const ListingPage = () => {
                 height: "432px",
                 borderRadius: "16px",
                 overflowY: "auto",
-                backgroundColor: "#F9FAF7",
+                backgroundColor: "#FFFFFF",
                 padding: "16px",
                 boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+                scrollbarWidth: "none", // Hide scrollbar in Firefox
+                msOverflowStyle: "none", // Hide scrollbar in Internet Explorer
               }}
             >
               {/* Brand and Model Filter */}
               <div
                 className="border p-3 mb-3"
-                style={{ borderRadius: "8px", backgroundColor: "#F9FAF7" }}
+                style={{ borderRadius: "8px", backgroundColor: "#FFFFFF" }}
               >
                 <div
                   className="d-flex justify-content-between align-items-center"
@@ -338,138 +347,16 @@ const ListingPage = () => {
                 )}
               </div>
 
-              {/* Budget Filter */}
-              <div
-                className="border p-3 mb-3"
-                style={{ borderRadius: "8px", backgroundColor: "#F9FAF7" }}
-              >
-                <div
-                  className="d-flex justify-content-between align-items-center"
-                  onClick={() => toggleFilter("budget")}
-                  style={{ cursor: "pointer" }}
-                >
-                  <span className="fw-bold">BUDGET</span>
-                  <span>{filters.budget ? "▲" : "▼"}</span>
-                </div>
-                {filters.budget && (
-                  <div className="mt-3">
-                    {/* Predefined Budget Checkboxes */}
-                    {[
-                      "Below 1 Lac",
-                      "1 Lac - 2 Lac",
-                      "2 Lac - 3 Lac",
-                      "3 Lac - 5 Lac",
-                      "5 Lac and Above",
-                    ].map((range, index) => (
-                      <Form.Check
-                        key={index}
-                        type="checkbox"
-                        id={`budget-${index}`}
-                        label={range}
-                        style={{
-                          marginBottom: "10px",
-                          fontSize: "14px",
-                          color: "#495057",
-                          textAlign: "left",
-                        }}
-                      />
-                    ))}
+              {/* Budget Filter Component */}
+      <BudgetFilter filters={filters} toggleFilter={toggleFilter} />
 
-                    {/* Custom Range Selection */}
-                    <p
-                      className="mt-3 mb-1"
-                      style={{
-                        fontSize: "14px",
-                        fontWeight: "bold",
-                        color: "#495057",
-                      }}
-                    >
-                      Choose a range below
-                    </p>
-                    <div className="d-flex align-items-center justify-content-between">
-                      <span style={{ fontSize: "14px", fontWeight: "bold" }}>
-                        4,00,000
-                      </span>
-                      <span style={{ fontSize: "14px", fontWeight: "bold" }}>
-                        8,00,000
-                      </span>
-                    </div>
-                    <input
-                      type="range"
-                      min="100000"
-                      max="1000000"
-                      step="10000"
-                      style={{
-                        width: "100%",
-                        appearance: "none",
-                        height: "8px",
-                        background: "#005B96",
-                        borderRadius: "5px",
-                        outline: "none",
-                        marginTop: "8px",
-                      }}
-                      onChange={(e) =>
-                        console.log(`Range changed: ${e.target.value}`)
-                      } // Replace with actual functionality
-                    />
 
-                    {/* From and To Input */}
-                    <div className="d-flex justify-content-between align-items-center mt-2">
-                      <input
-                        type="text"
-                        value="From"
-                        className="form-control"
-                        style={{
-                          width: "45%",
-                          borderRadius: "8px",
-                          fontSize: "14px",
-                        }}
-                      />
-                      <input
-                        type="text"
-                        value="To"
-                        className="form-control"
-                        style={{
-                          width: "45%",
-                          borderRadius: "8px",
-                          fontSize: "14px",
-                        }}
-                      />
-                    </div>
 
-                    {/* Buttons */}
-                    <div className="d-flex justify-content-between mt-3">
-                      <Button
-                        variant="outline-primary"
-                        style={{
-                          fontSize: "14px",
-                          fontWeight: "bold",
-                          borderRadius: "24px",
-                        }}
-                      >
-                        Reset
-                      </Button>
-                      <Button
-                        variant="primary"
-                        style={{
-                          fontSize: "14px",
-                          fontWeight: "bold",
-                          backgroundColor: "#005B96",
-                          borderColor: "#005B96",
-                          borderRadius: "24px",
-                        }}
-                      >
-                        Apply
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </div>
 
               {/* Year Filter */}
               <div
                 className="border p-3 mb-3"
-                style={{ borderRadius: "8px", backgroundColor: "#F9FAF7" }}
+                style={{ borderRadius: "8px", backgroundColor: "#FFFFFF" }}
               >
                 <div
                   className="d-flex justify-content-between align-items-center"
@@ -575,7 +462,7 @@ const ListingPage = () => {
               {/* No. of Owners Filter */}
               <div
                 className="border p-3 mb-3"
-                style={{ borderRadius: "8px", backgroundColor: "#F9FAF7" }}
+                style={{ borderRadius: "8px", backgroundColor: "#FFFFFF" }}
               >
                 <div
                   className="d-flex justify-content-between align-items-center"
@@ -615,7 +502,7 @@ const ListingPage = () => {
               {/* Inspection Status Filter */}
               <div
                 className="border p-3 mb-3"
-                style={{ borderRadius: "8px", backgroundColor: "#F9FAF7" }}
+                style={{ borderRadius: "8px", backgroundColor: "#FFFFFF" }}
               >
                 <div
                   className="d-flex justify-content-between align-items-center"
@@ -646,7 +533,7 @@ const ListingPage = () => {
               {/* KM Driven Filter */}
               <div
                 className="border p-3 mb-3"
-                style={{ borderRadius: "8px", backgroundColor: "#F9FAF7" }}
+                style={{ borderRadius: "8px", backgroundColor: "#FFFFFF" }}
               >
                 <div
                   className="d-flex justify-content-between align-items-center"
@@ -775,7 +662,7 @@ const ListingPage = () => {
               {/* Fuel Filter */}
               <div
                 className="border p-3 mb-3"
-                style={{ borderRadius: "8px", backgroundColor: "#F9FAF7" }}
+                style={{ borderRadius: "8px", backgroundColor: "#FFFFFF" }}
               >
                 <div
                   className="d-flex justify-content-between align-items-center"
@@ -814,7 +701,7 @@ const ListingPage = () => {
               {/* Transmission Filter */}
               <div
                 className="border p-3 mb-3"
-                style={{ borderRadius: "8px", backgroundColor: "#F9FAF7" }}
+                style={{ borderRadius: "8px", backgroundColor: "#FFFFFF" }}
               >
                 <div
                   className="d-flex justify-content-between align-items-center"
@@ -849,143 +736,33 @@ const ListingPage = () => {
 
           {/* Car Listings Section */}
           <Col md={9}>
-            {/* Car Listings */}
-            {/* Car Listings */}
-            <Row>
-              {carData.map((car, index) => (
-                <Col md={6} lg={4} key={index} className="mb-4">
-                  <div
-                    className="card shadow-sm"
-                    style={{
-                      borderRadius: "16px",
-                      overflow: "hidden",
-                      backgroundColor: "#F9FAF7",
-                      border: "1px solid #E0E0E0",
-                    }}
-                  >
-                    {/* Car Image Section */}
-                    <div style={{ position: "relative" }}>
-                      <img
-                        src={car.images[0]}
-                        className="card-img-top"
-                        alt="Car"
-                        style={{
-                          height: "180px",
-                          objectFit: "cover",
-                          borderBottom: "1px solid #E0E0E0",
-                        }}
-                      />
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "8px",
-                          right: "8px",
-                          backgroundColor: "white",
-                          borderRadius: "50%",
-                          padding: "8px",
-                          boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
-                        }}
-                      >
-                        <span style={{ fontSize: "16px", color: "#FFD700" }}>
-                          ♡
-                        </span>
-                      </div>
-                    </div>
+  {/* Car Listings */}
+  <Row>
+    <Col>
+      <div
+        className="d-flex flex-wrap" // Add flex-wrap for wrapping cards
+        style={{
+          gap: "24px", // Spacing between cards
+          paddingBottom: "16px",
+        }}
+      >
+        {carData.map((car, index) => (
+          <div
+            key={index}
+            style={{
+              flex: "0 0 calc((100% - 48px) / 3)", // 3 cards per row with 24px gap
+              height: "303.11px", // Match the height
+              maxWidth: "calc((100% - 48px) / 3)", // Prevent cards from expanding too wide
+            }}
+          >
+            <CarCard {...car} />
+          </div>
+        ))}
+      </div>
+    </Col>
+  </Row>
+</Col>
 
-                    {/* Car Details Section */}
-                    <div className="card-body">
-  {/* Price and Date */}
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      marginBottom: "8px",
-    }}
-  >
-    <h5
-      className="card-title mb-0"
-      style={{
-        fontWeight: "bold",
-        fontSize: "18px",
-        color: "#005B96",
-      }}
-    >
-      {car.price}
-    </h5>
-    <span
-      style={{
-        fontSize: "12px",
-        color: "#757575",
-        whiteSpace: "nowrap",
-      }}
-    >
-      {car.date}
-    </span>
-  </div>
-
-  {/* Title and Year */}
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      marginBottom: "8px",
-    }}
-  >
-    <p
-      style={{
-        fontSize: "16px",
-        fontWeight: "bold",
-        color: "#757575",
-        margin: "0",
-      }}
-    >
-      {car.title}
-    </p>
-    <span
-      style={{
-        fontSize: "12px",
-        color: "#757575",
-      }}
-    >
-       {`${car.year} - ${car.distance}`}
-    </span>
-  </div>
-
-  {/* Location and Number of Owners */}
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      marginBottom: "8px",
-    }}
-  >
-    <span
-      style={{
-        fontSize: "12px",
-        color: "#757575",
-      }}
-    >
-      {car.location}
-    </span>
-    <span
-      style={{
-        fontSize: "12px",
-        color: "#757575",
-      }}
-    >
-      No. of owners: {car.owners}
-    </span>
-  </div>
-</div>
-
-                  </div>
-                </Col>
-              ))}
-            </Row>
-          </Col>
         </Row>
       </Container>
 
