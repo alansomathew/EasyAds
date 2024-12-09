@@ -3,10 +3,12 @@ import { Container, Navbar, Form, InputGroup, Nav } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap styles
 import { FaSearch, FaHeart, FaBell, FaCommentDots } from "react-icons/fa";
 import LoginModal from "../components/login_signup.js"; // Import the LoginModal component
+import { useNavigate } from "react-router-dom"; // Import useNavigate from React Router
 
 export default function AppHeader() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Simulated login state
   const [showLoginModal, setShowLoginModal] = useState(false); // Modal state
+  const navigate = useNavigate(); // Initialize the navigation hook
 
   const handleLoginClick = () => {
     setShowLoginModal(true); // Open login modal
@@ -19,6 +21,10 @@ export default function AppHeader() {
   const handleUserLogin = () => {
     setIsLoggedIn(true); // Simulate user login
     setShowLoginModal(false); // Close login modal
+  };
+
+  const handleSearchClick = () => {
+    navigate("/listing"); // Navigate to the ListingPage
   };
 
   return (
@@ -110,7 +116,7 @@ export default function AppHeader() {
               cursor: "pointer", // Makes it clickable
               boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)", // Shadow for depth
             }}
-            onClick={() => console.log("Search clicked")}
+            onClick={handleSearchClick} // Redirect on click
           >
             <FaSearch style={{ color: "white", fontSize: "16px" }} />
           </InputGroup.Text>
