@@ -1,7 +1,7 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import SectionHeader from '../common/sectionheader'; // Reuse SectionHeader
-import CarCard from '../components/card'; // Reuse CarCard for displaying cars
+import React from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import SectionHeader from "../common/sectionheader"; // Reuse SectionHeader
+import CarCard from "../components/card"; // Reuse CarCard for displaying cars
 
 const CarSection = () => {
   const navigate = useNavigate(); // Initialize navigation
@@ -9,52 +9,67 @@ const CarSection = () => {
   // Mock data for cars
   const carData = [
     {
-      id: 1, // Add unique ID for each car
-      images: ['https://via.placeholder.com/300x200?text=Car+A'],
-      price: '7,20,000',
-      title: 'Tata Tiago',
-      location: 'Mundamveli',
-      year: '2016',
-      distance: '48,700',
-      owners: '2',
-      date: 'Yesterday',
+      id: 1,
+      images: [
+        "https://via.placeholder.com/300x200?text=Car+A",
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
+      ],
+      price: "7,20,000",
+      title: "Tata Tiago",
+      location: "Mundamveli",
+      year: "2016",
+      distance: "48,700",
+      owners: "2",
+      date: "Yesterday",
     },
     {
       id: 2,
-      images: ['https://via.placeholder.com/300x200?text=Car+B'],
-      price: '10,50,000',
-      title: 'Honda City',
-      location: 'Mundamveli',
-      year: '2019',
-      distance: '25,000',
-      owners: '1',
-      date: 'Today',
+      images: [
+        "https://via.placeholder.com/300x200?text=Car+A",
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
+      ],
+      price: "7,20,000",
+      title: "Tata Tiago",
+      location: "Mundamveli",
+      year: "2016",
+      distance: "48,700",
+      owners: "2",
+      date: "Yesterday",
     },
     {
-      id: 1, // Add unique ID for each car
-      images: ['https://via.placeholder.com/300x200?text=Car+A',
-        'https://via.placeholder.com/300x200?text=Car+A',
-        'https://via.placeholder.com/300x200?text=Car+A'],
-      price: '7,20,000',
-      title: 'Tata Tiago',
-      location: 'Mundamveli',
-      year: '2016',
-      distance: '48,700',
-      owners: '2',
-      date: 'Yesterday',
+      id: 3,
+      images: [
+        "https://via.placeholder.com/300x200?text=Car+A",
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
+      ],
+      price: "7,20,000",
+      title: "Tata Tiago",
+      location: "Mundamveli",
+      year: "2016",
+      distance: "48,700",
+      owners: "2",
+      date: "Yesterday",
     },
     {
-      id: 1, // Add unique ID for each car
-      images: ['https://via.placeholder.com/300x200?text=Car+A'],
-      price: '7,20,000',
-      title: 'Tata Tiago',
-      location: 'Mundamveli',
-      year: '2016',
-      distance: '48,700',
-      owners: '2',
-      date: 'Yesterday',
+      id: 3,
+      images: [
+        "https://via.placeholder.com/300x200?text=Car+A",
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
+      ],
+      price: "7,20,000",
+      title: "Tata Tiago",
+      location: "Mundamveli",
+      year: "2016",
+      distance: "48,700",
+      owners: "2",
+      date: "Yesterday",
     },
-    // Add more car objects here
+   
+   
   ];
 
   const handleCarClick = (id) => {
@@ -62,30 +77,26 @@ const CarSection = () => {
   };
 
   return (
-    <div className="container mt-5" style={{ maxWidth: '1312px' }}>
+    <div className="container mt-5" style={{ maxWidth: "1312px" }}>
       {/* Section Header */}
-      <SectionHeader title="Cars" onSeeAll={() => console.log('See All Cars clicked')} />
+      <SectionHeader
+        title="Cars"
+        onSeeAll={() => console.log("See All Cars clicked")}
+      />
 
-      {/* Horizontal Scrollable Section */}
+      {/* Car Grid Section */}
       <div
-        className="d-flex overflow-auto"
+        className="d-flex flex-wrap gap-4"
         style={{
-          gap: '24px',
-          paddingBottom: '16px',
+          paddingBottom: "16px",
         }}
       >
         {carData.map((car) => (
-          <div
+          <CarCard
             key={car.id}
-            style={{
-              flex: '0 0 300px', // Card width
-              height: '303.11px', // Match the height
-              cursor: 'pointer', // Add pointer cursor for clickability
-            }}
-            onClick={() => handleCarClick(car.id)} // Handle click to navigate
-          >
-            <CarCard {...car} />
-          </div>
+            {...car}
+            onClick={() => handleCarClick(car.id)} // Pass the click handler to the card
+          />
         ))}
       </div>
     </div>

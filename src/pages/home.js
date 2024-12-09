@@ -38,8 +38,10 @@ const Home = () => {
         <HousesSection />
       </div>
 
-      {/* Footer */}
-      <Footer /> {/* Call the Footer component here */}
+      {/* Footer with Spacer */}
+      <div style={{ marginTop: "40px" }}> {/* Add some space before the footer */}
+        <Footer />
+      </div>
     </div>
   );
 };
