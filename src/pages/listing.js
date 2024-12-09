@@ -57,6 +57,7 @@ const ListingPage = () => {
   // Sample car data
   const carData = [
     {
+      id:1,
       images: ["https://via.placeholder.com/300x200?text=Car+1"],
       price: "₹ 7,20,000",
       title: "Tata Tiago",
@@ -67,6 +68,7 @@ const ListingPage = () => {
       date: "Yesterday",
     },
     {
+      id:2,
       images: ["https://via.placeholder.com/300x200?text=Car+2"],
       price: "₹ 7,20,000",
       title: "Tata Tiago",
@@ -77,6 +79,7 @@ const ListingPage = () => {
       date: "Sep 23, 2023",
     },
     {
+      id:3,
       images: ["https://via.placeholder.com/300x200?text=Car+2"],
       price: "₹ 7,20,000",
       title: "Tata Tiago",
@@ -87,6 +90,7 @@ const ListingPage = () => {
       date: "Sep 23, 2023",
     },
     {
+      id:4,
       images: ["https://via.placeholder.com/300x200?text=Car+2"],
       price: "₹ 7,20,000",
       title: "Tata Tiago",
@@ -97,6 +101,7 @@ const ListingPage = () => {
       date: "Sep 23, 2023",
     },
     {
+      id:5,
       images: ["https://via.placeholder.com/300x200?text=Car+2"],
       price: "₹ 7,20,000",
       title: "Tata Tiago",
@@ -107,6 +112,7 @@ const ListingPage = () => {
       date: "Sep 23, 2023",
     },
     {
+      id:6,
       images: ["https://via.placeholder.com/300x200?text=Car+2"],
       price: "₹ 7,20,000",
       title: "Tata Tiago",
