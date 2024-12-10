@@ -24,7 +24,7 @@ const Home = () => {
       {/* Content Sections */}
       <div
         style={{
-          marginTop: dropdownOpen ? "200px" : "0", // Adjust the margin dynamically
+          marginTop: dropdownOpen ? "400px" : "0", // Adjust the margin dynamically
           transition: "margin-top 0.3s ease", // Smooth transition effect
         }}
       >

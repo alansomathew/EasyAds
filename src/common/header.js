@@ -40,7 +40,7 @@ export default function AppHeader() {
         <Container fluid className="px-5">
           {/* Navbar Brand */}
           <Navbar.Brand href="#home" className="fw-bold text-white">
-            <h1 style={{ fontSize: "1.5rem" }}>EazyAds</h1>
+            <h1 style={{ fontSize: "2.5rem" }}>EazyAds</h1>
           </Navbar.Brand>
 
           <Form className="mx-auto" style={{ width: "60%" }}>
