@@ -116,11 +116,11 @@ const ProductDetailsPage = () => {
               <Card
                 className="p-4"
                 style={{
-                  borderRadius: "32px",
+                  borderRadius: "52px",
                   boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
                   width: "100%",
                   maxWidth: "533px",
-                  height: "372px",
+                  height: "400px",
                 }}
               >
                 <h3
@@ -216,21 +216,28 @@ const ProductDetailsPage = () => {
                   className="d-flex justify-content-between align-items-center mt-4"
                   style={{ gap: "16px" }}
                 >
-                  {/* Report if sold */}
                   <div style={{ flex: "1" }}>
-                    <Button
-                      variant="link"
-                      className="text-primary"
+                    <button
                       style={{
-                        padding: "0",
-                        fontWeight: "bold",
+                        background: "none",
+                        border: "none",
                         color: "#005B96",
+                        fontWeight: "bold",
                         fontSize: "14px",
                         textDecoration: "none",
+                        cursor: "pointer",
+                        padding: "0", // Remove default button padding
                       }}
+                      onMouseEnter={(e) =>
+                        (e.target.style.textDecoration = "underline")
+                      }
+                      onMouseLeave={(e) =>
+                        (e.target.style.textDecoration = "none")
+                      }
+                      onClick={() => console.log("Report if sold clicked")} // Replace with actual logic
                     >
                       Report if sold →
-                    </Button>
+                    </button>
                   </div>
 
                   {/* Chat with seller */}
