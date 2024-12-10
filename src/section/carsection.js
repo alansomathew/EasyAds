@@ -14,8 +14,10 @@ const CarSection = () => {
       id: 1,
       images: [
         require("../images/car/car1.jpeg"),
-        "https://via.placeholder.com/300x200?text=Car+B",
-        "https://via.placeholder.com/300x200?text=Car+C",
+        require("../images/car/car2.jpeg"),
+        require("../images/car/car3.jpeg"),
+        require("../images/car/car4.jpeg"),
+        require("../images/car/car5.jpeg"),
       ],
       price: "7,20,000",
       title: "Tata Tiago",
@@ -28,7 +30,9 @@ const CarSection = () => {
     {
       id: 2,
       images: [
-        "https://via.placeholder.com/300x200?text=Car+A",
+        require("../images/car/car6.jpeg"),
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
         "https://via.placeholder.com/300x200?text=Car+B",
         "https://via.placeholder.com/300x200?text=Car+C",
       ],
@@ -43,7 +47,9 @@ const CarSection = () => {
     {
       id: 3,
       images: [
-        "https://via.placeholder.com/300x200?text=Car+A",
+        require("../images/car/car7.jpeg"),
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
         "https://via.placeholder.com/300x200?text=Car+B",
         "https://via.placeholder.com/300x200?text=Car+C",
       ],
@@ -58,7 +64,9 @@ const CarSection = () => {
     {
       id: 3,
       images: [
-        "https://via.placeholder.com/300x200?text=Car+A",
+        require("../images/car/car8.jpeg"),
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
         "https://via.placeholder.com/300x200?text=Car+B",
         "https://via.placeholder.com/300x200?text=Car+C",
       ],
