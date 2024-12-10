@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate
 import SectionHeader from "../common/sectionheader"; // Reuse SectionHeader
 import CarCard from "../components/card"; // Reuse CarCard for displaying cars
 
+
+
 const CarSection = () => {
   const navigate = useNavigate(); // Initialize navigation
 
@@ -11,7 +13,7 @@ const CarSection = () => {
     {
       id: 1,
       images: [
-        "https://via.placeholder.com/300x200?text=Car+A",
+        require("../images/car/car1.jpeg"),
         "https://via.placeholder.com/300x200?text=Car+B",
         "https://via.placeholder.com/300x200?text=Car+C",
       ],
