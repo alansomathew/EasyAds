@@ -5,10 +5,10 @@ const SectionHeader = ({ title, onSeeAll }) => {
   return (
     <div className="d-flex justify-content-between align-items-center mb-4">
       {/* Section Title */}
-      <h2 className="m-0" style={{ fontSize: '24px', fontWeight: 'bold' }}>
+      <h2 className="m-0" style={{ fontSize: '24px', fontWeight: 'bold', color: '#005B96', }}>
         {title}
       </h2>
-
+      
       {/* See All Link */}
       <button
         className="btn btn-link text-decoration-none text-primary p-0"

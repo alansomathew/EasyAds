@@ -40,12 +40,14 @@ const BikeSection = () => {
     },
     {
       id: 3,
-      images: [require("../images/bike/bike3.jpeg"),
+      images: [
+        require("../images/bike/bike3.jpeg"),
         "https://via.placeholder.com/300x200?text=Bike+2",
         "https://via.placeholder.com/300x200?text=Bike+3",
         "https://via.placeholder.com/300x200?text=Bike+3",
         "https://via.placeholder.com/300x200?text=Bike+2",
-        "https://via.placeholder.com/300x200?text=Bike+3",],
+        "https://via.placeholder.com/300x200?text=Bike+3",
+      ],
       price: "1,20,000",
       title: "Bajaj Pulsar NS 200",
       location: "Edapally",
@@ -56,12 +58,14 @@ const BikeSection = () => {
     },
     {
       id: 4,
-      images: [require("../images/bike/bike4.jpeg"),
+      images: [
+        require("../images/bike/bike4.jpeg"),
         "https://via.placeholder.com/300x200?text=Bike+2",
         "https://via.placeholder.com/300x200?text=Bike+3",
         "https://via.placeholder.com/300x200?text=Bike+2",
         "https://via.placeholder.com/300x200?text=Bike+3",
-        "https://via.placeholder.com/300x200?text=Bike+3"],
+        "https://via.placeholder.com/300x200?text=Bike+3",
+      ],
       price: "90,000",
       title: "Hero Splendor Plus",
       location: "Vytilla",
@@ -86,7 +90,7 @@ const BikeSection = () => {
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-          gap: "24px",
+          gap: "16px",
         }}
       >
         {bikeData.map((bike) => (

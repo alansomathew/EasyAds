@@ -1,38 +1,55 @@
 import React from "react";
+import HouseCard from "../components/housecard"; // Import HouseCard component
 
 const HousesSection = () => {
   // Mock data for houses
   const houseData = [
     {
-      images: ["https://via.placeholder.com/300x200?text=House+1"],
-      price: "₹ 46,00,000",
+      id: 1,
+      images: [
+        require("../images/house/house1.jpeg"),
+        "https://via.placeholder.com/300x200?text=House+1",
+      ],
+      price: "46,00,000",
       title: "3 Bds | 3 Bds | 1250 ft²",
       location: "Coimbatore",
       description: "Parking available, Balcony, Full furnished, 24hrs hot...",
       date: "Yesterday",
     },
     {
-      images: ["https://via.placeholder.com/300x200?text=House+2"],
-      price: "₹ 46,00,000",
-      title: "3 Bds | 3 Bds | 1250 ft²",
-      location: "Coimbatore",
-      description: "Parking available, Balcony, Full furnished, 24hrs hot...",
-      date: "Yesterday",
+      id: 2,
+      images: [
+        require("../images/house/house1.jpeg"),
+        "https://via.placeholder.com/300x200?text=House+2",
+      ],
+      price: "52,00,000",
+      title: "2 Bds | 2 Bds | 1000 ft²",
+      location: "Chennai",
+      description: "Swimming pool, Gym, Fully Furnished, 24hrs electricity...",
+      date: "Today",
     },
     {
-      images: ["https://via.placeholder.com/300x200?text=House+3"],
-      price: "₹ 46,00,000",
-      title: "3 Bds | 3 Bds | 1250 ft²",
-      location: "Coimbatore",
-      description: "Parking available, Balcony, Full furnished, 24hrs hot...",
-      date: "Yesterday",
+      id: 3,
+      images: [
+        require("../images/house/house1.jpeg"),
+        "https://via.placeholder.com/300x200?text=House+3",
+      ],
+      price: "34,00,000",
+      title: "1 Bds | 1 Bds | 750 ft²",
+      location: "Bangalore",
+      description: "Modular kitchen, Balcony, Near Metro, 24hrs security...",
+      date: "2 days ago",
     },
     {
-      images: ["https://via.placeholder.com/300x200?text=House+4"],
-      price: "₹ 46,00,000",
-      title: "3 Bds | 3 Bds | 1250 ft²",
-      location: "Coimbatore",
-      description: "Parking available, Balcony, Full furnished, 24hrs hot...",
+      id: 4,
+      images: [
+        require("../images/house/house1.jpeg"),
+        "https://via.placeholder.com/300x200?text=House+4",
+      ],
+      price: "75,00,000",
+      title: "4 Bds | 4 Bds | 2000 ft²",
+      location: "Hyderabad",
+      description: "Garden, Parking available, Independent house...",
       date: "Yesterday",
     },
   ];
@@ -45,8 +62,8 @@ const HousesSection = () => {
     <div className="container mt-5" style={{ maxWidth: "1312px" }}>
       {/* Section Header */}
       <div className="d-flex justify-content-between align-items-center mb-4">
-      <h3 className="text-dark fw-bold" style={{ textAlign: 'left' }}>
-      Houses and Flats for Sale
+        <h3 className="text-dark fw-bold " style={{ textAlign: "left" }}>
+          Houses and Flats for Sale
         </h3>
         <a
           href="#see-all"
@@ -61,118 +78,24 @@ const HousesSection = () => {
         </a>
       </div>
 
-      {/* Horizontal Scrollable Section */}
+      {/* Responsive Grid Layout */}
       <div
-        className="d-flex overflow-auto"
         style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
           gap: "24px",
-          paddingBottom: "16px",
         }}
       >
-        {houseData.map((house, index) => (
-          <div
-            key={index}
-            className="card shadow-sm"
-            style={{
-              flex: "0 0 300px", // Fixed width for each card
-              borderRadius: "12px",
-              overflow: "hidden",
-              backgroundColor: "#fff",
-            }}
-          >
-            {/* Image Section */}
-            <div
-              className="position-relative"
-              style={{
-                height: "200px",
-                backgroundColor: "#f7f7f7",
-              }}
-            >
-              <img
-                src={house.images[0]}
-                alt={house.title}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                }}
-              />
-              {/* New Badge */}
-              <span
-                style={{
-                  position: "absolute",
-                  bottom: "10px",
-                  right: "10px",
-                  backgroundColor: "#FFD700",
-                  color: "#000",
-                  padding: "4px 8px",
-                  borderRadius: "8px",
-                  fontSize: "12px",
-                  fontWeight: "bold",
-                }}
-              >
-                New
-              </span>
-            </div>
-
-            {/* Details Section */}
-            <div className="p-3">
-              {/* Price and Date */}
-              <div className="d-flex justify-content-between align-items-center mb-2">
-                <h6
-                  className="mb-0"
-                  style={{
-                    fontWeight: "bold",
-                    fontSize: "16px",
-                    color: "#000",
-                  }}
-                >
-                  {house.price}
-                </h6>
-                <p
-                  className="mb-0 text-muted"
-                  style={{
-                    fontSize: "12px",
-                  }}
-                >
-                  {house.date}
-                </p>
-              </div>
-
-              {/* Title and Location */}
-              <div className="d-flex justify-content-between align-items-center mb-2">
-                <p
-                  className="mb-0"
-                  style={{
-                    fontSize: "14px",
-                    color: "#333",
-                    fontWeight: "500",
-                  }}
-                >
-                  {house.title}
-                </p>
-                <p
-                  className="mb-0 text-muted"
-                  style={{
-                    fontSize: "12px",
-                  }}
-                >
-                  {house.location}
-                </p>
-              </div>
-
-              {/* Description */}
-              <p
-                className="text-muted mb-0"
-                style={{
-                  fontSize: "12px",
-                  textAlign: "left", // Ensure it starts from the left
-                }}
-              >
-                {house.description}
-              </p>
-            </div>
-          </div>
+        {houseData.map((house) => (
+          <HouseCard
+            key={house.id}
+            images={house.images} // Use house images
+            price={house.price} // House price
+            title={house.title} // Title representing details like BHK and area
+            location={house.location} // House location
+            description={house.description} // Short description of the house
+            date={house.date} // Posted date
+          />
         ))}
       </div>
     </div>

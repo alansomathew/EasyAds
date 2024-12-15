@@ -45,7 +45,7 @@ const ProductDetailsPage = () => {
         <Row>
           <Col md={8}>
             {/* Product Images */}
-            <Card className="mb-3" style={{ borderRadius: "16px" }}>
+            <div className="mb-3" style={{ borderRadius: "16px" }}>
               <div style={{ padding: "16px", backgroundColor: "#F9FAF7" }}>
                 {/* Featured Image */}
                 <Card.Img
@@ -85,24 +85,30 @@ const ProductDetailsPage = () => {
                   ))}
                 </div>
               </div>
-            </Card>
+            </div>
 
             {/* Description */}
-            <Card
-              className="p-3"
-              style={{
-                borderRadius: "16px",
-                marginBottom: "24px", // Space between description and footer
-              }}
-            >
-              <h5>Description</h5>
-              <p style={{ fontSize: "14px", color: "#6c757d" }}>
-                Lorem ipsum dolor sit amet consectetur. Nibh integer consequat
-                convallis vel velit ligula justo. Cras pulvinar viverra senectus
-                fringilla morbi id. Pulvinar non lectus posuere ultricies vel
-                libero.
-              </p>
-            </Card>
+<Card
+  className="p-3"
+  style={{
+    borderRadius: "16px",
+    marginBottom: "24px",
+    backgroundColor: "#F9FAF7",
+    border: "1px solid #E0E0E0", // Light border color
+    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.05)", // Subtle shadow
+  }}
+>
+  <h5 style={{ fontWeight: "bold", color: "#212529", marginBottom: "12px", textAlign: "left"}}>
+    Description
+  </h5>
+  <p style={{ fontSize: "14px", color: "#6c757d", lineHeight: "1.8" , textAlign: "left"}}>
+    Lorem ipsum dolor sit amet consectetur. Nibh integer consequat convallis
+    vel velit ligula justo. Cras pulvinar viverra senectus fringilla morbi id.
+    Pulvinar non lectus posuere ultricies vel libero. Facilisis massa massa
+    eget ipsum tellus turpis est aliquet morbi.
+  </p>
+</Card>
+
           </Col>
 
           {/* Right Section */}
@@ -134,12 +140,13 @@ const ProductDetailsPage = () => {
                 </h3>
                 <div
                   style={{
-                    fontSize: "16px",
+                    fontSize: "19px",
                     color: "#6c757d",
                     display: "flex",
                     justifyContent: "space-between",
                     marginTop: "8px",
                     marginBottom: "24px",
+                    fontWeight: "bold",
                   }}
                 >
                   <span>80000.0 KM</span>
@@ -216,29 +223,7 @@ const ProductDetailsPage = () => {
                   className="d-flex justify-content-between align-items-center mt-4"
                   style={{ gap: "16px" }}
                 >
-                  <div style={{ flex: "1" }}>
-                    <button
-                      style={{
-                        background: "none",
-                        border: "none",
-                        color: "#005B96",
-                        fontWeight: "bold",
-                        fontSize: "14px",
-                        textDecoration: "none",
-                        cursor: "pointer",
-                        padding: "0", // Remove default button padding
-                      }}
-                      onMouseEnter={(e) =>
-                        (e.target.style.textDecoration = "underline")
-                      }
-                      onMouseLeave={(e) =>
-                        (e.target.style.textDecoration = "none")
-                      }
-                      onClick={() => console.log("Report if sold clicked")} // Replace with actual logic
-                    >
-                      Report if sold →
-                    </button>
-                  </div>
+                  
 
                   {/* Chat with seller */}
                   <Button
@@ -253,7 +238,7 @@ const ProductDetailsPage = () => {
                       textAlign: "center",
                     }}
                   >
-                    Chat with seller
+                     Report if sold 
                   </Button>
 
                   {/* Pay */}
@@ -270,7 +255,7 @@ const ProductDetailsPage = () => {
                       textAlign: "center",
                     }}
                   >
-                    Pay
+                    Chat with Seller
                   </Button>
                 </div>
               </Card>

@@ -1,21 +1,9 @@
 import React, { useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { FaHeart, FaRegHeart } from "react-icons/fa"; // Import like icons
 
-const CarCard = ({
-  images,
-  price,
-  title,
-  location,
-  year,
-  distance,
-  owners,
-  date,
-  onClick
-}) => {
+const HouseCard = ({ images, price, title, location, description, date }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const [liked, setLiked] = useState(false); // State for like button
 
   // Handle navigation for the previous image
   const handlePrev = () => {
@@ -31,25 +19,16 @@ const CarCard = ({
     );
   };
 
-   // Toggle Like Button
-   const toggleLike = (e) => {
-    e.stopPropagation(); // Prevent click propagation
-    setLiked(!liked);
-  };
-
-
   return (
     <div
       className="card shadow-sm"
-     // Handle click to navigate
       style={{
         width: "300px",
+        borderRadius: "12px",
+        overflow: "hidden",
+        backgroundColor: "#FFFFFF",
         border: "none", // Remove border
         boxShadow: "none", // Remove shadow
-        borderRadius: "16px", // Removed rounded corners
-        overflow: "hidden",
-        backgroundColor: "transparent", // Transparent background
-        
       
       }}
     >
@@ -65,34 +44,12 @@ const CarCard = ({
       >
         <img
           src={images[currentImageIndex]}
-          alt={`Car ${currentImageIndex + 1}`}
+          alt={`House ${currentImageIndex + 1}`}
           className="w-100 h-100"
           style={{
             objectFit: "cover",
           }}
         />
-
-        {/* Like Button */}
-        <div
-          onClick={toggleLike}
-          style={{
-            position: "absolute",
-            top: "4px",
-            right: "10px",
-            
-            padding: "10px",
-            cursor: "pointer",
-            boxShadow: "0px 8px 9px rgba(0, 0, 0, 0.1)",
-            zIndex: 10,
-          }}
-        >
-          {liked ? (
-            <FaHeart style={{ color: "white", fontSize: "18px" }} />
-          ) : (
-            <FaRegHeart style={{ color: "#FFFFFF  ", fontSize: "18px" }} />
-          )}
-        </div>
-
         {isHovered && images.length > 1 && (
           <>
             {/* Left Arrow */}
@@ -194,23 +151,29 @@ const CarCard = ({
           <small className="text-muted">{date}</small>
         </div>
 
-        {/* Title and Year-Distance */}
+        {/* Title and Location */}
         <div
           className="d-flex justify-content-between align-items-center mb-1"
           style={{ fontSize: "14px" }}
         >
           <span style={{ fontWeight: "bold" }}>{title}</span>
-          <span className="text-muted">{`${year} - ${distance} km`}</span>
+          <span className="text-muted">{location}</span>
         </div>
 
-        {/* Location and Owners */}
-        <div className="d-flex justify-content-between align-items-center">
-          <span className="text-muted small">{location}</span>
-          <span className="text-muted small">{`No. of owners: ${owners}`}</span>
-        </div>
+        {/* Description */}
+        <p
+          className="text-muted small"
+          style={{
+            textAlign: "left",
+            fontSize: "12px",
+            lineHeight: "1.5",
+          }}
+        >
+          {description}
+        </p>
       </div>
     </div>
   );
 };
 
-export default CarCard;
+export default HouseCard;

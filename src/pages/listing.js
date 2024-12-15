@@ -7,8 +7,10 @@ import {
   Dropdown,
   Form,
   Badge,
+  Breadcrumb,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import AppHeader from "../common/header"; // Import the AppHeader component
 import Footer from "../common/footer"; // Import the Footer component
 import CustomNavbar from "../components/navbar"; // Import CustomNavbar
@@ -16,6 +18,7 @@ import CarCard from "../components/card";
 import BudgetFilter from "../components/bugetFilter";
 
 const ListingPage = () => {
+    const navigate = useNavigate(); // Initialize useNavigate
   // State for filter collapses
   const [filters, setFilters] = useState({
     brandModel: false,
@@ -32,6 +35,8 @@ const ListingPage = () => {
 
   const [tags, setTags] = useState(["Cars", "Kochi"]); // Tags state
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [sortOption, setSortOption] = useState("Date Published");
+
 
   // Toggle filter collapse
   const toggleFilter = (filter) => {
@@ -54,75 +59,124 @@ const ListingPage = () => {
   const handleDropdownToggle = (isOpen) => {
     setDropdownOpen(isOpen);
   };
+
+  const handleSortChange = (option) => {
+    setSortOption(option);
+  };
+
   // Sample car data
   const carData = [
     {
-      id:1,
-      images: ["https://via.placeholder.com/300x200?text=Car+1"],
-      price: "₹ 7,20,000",
+      id: 1,
+      images: [
+        require("../images/car/car1.jpeg"),
+        require("../images/car/car2.jpeg"),
+        require("../images/car/car3.jpeg"),
+        require("../images/car/car4.jpeg"),
+        require("../images/car/car5.jpeg"),
+      ],
+      price: "7,20,000",
       title: "Tata Tiago",
       location: "Mundamveli",
       year: "2016",
-      distance: "48,700 km",
+      distance: "48,700",
       owners: "2",
       date: "Yesterday",
     },
     {
-      id:2,
-      images: ["https://via.placeholder.com/300x200?text=Car+2"],
-      price: "₹ 7,20,000",
+      id: 2,
+      images: [
+        require("../images/car/car6.jpeg"),
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
+      ],
+      price: "7,20,000",
       title: "Tata Tiago",
       location: "Mundamveli",
       year: "2016",
-      distance: "48,700 km",
+      distance: "48,700",
       owners: "2",
-      date: "Sep 23, 2023",
+      date: "Yesterday",
     },
     {
-      id:3,
-      images: ["https://via.placeholder.com/300x200?text=Car+2"],
-      price: "₹ 7,20,000",
+      id: 3,
+      images: [
+        require("../images/car/car7.jpeg"),
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
+      ],
+      price: "7,20,000",
       title: "Tata Tiago",
       location: "Mundamveli",
       year: "2016",
-      distance: "48,700 km",
+      distance: "48,700",
       owners: "2",
-      date: "Sep 23, 2023",
+      date: "Yesterday",
     },
     {
-      id:4,
-      images: ["https://via.placeholder.com/300x200?text=Car+2"],
-      price: "₹ 7,20,000",
+      id: 3,
+      images: [
+        require("../images/car/car8.jpeg"),
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
+      ],
+      price: "7,20,000",
       title: "Tata Tiago",
       location: "Mundamveli",
       year: "2016",
-      distance: "48,700 km",
+      distance: "48,700",
       owners: "2",
-      date: "Sep 23, 2023",
+      date: "Yesterday",
     },
     {
-      id:5,
-      images: ["https://via.placeholder.com/300x200?text=Car+2"],
-      price: "₹ 7,20,000",
+      id: 4,
+      images: [
+        require("../images/car/car7.jpeg"),
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
+      ],
+      price: "7,20,000",
       title: "Tata Tiago",
       location: "Mundamveli",
       year: "2016",
-      distance: "48,700 km",
+      distance: "48,700",
       owners: "2",
-      date: "Sep 23, 2023",
+      date: "Yesterday",
     },
+   
     {
-      id:6,
-      images: ["https://via.placeholder.com/300x200?text=Car+2"],
-      price: "₹ 7,20,000",
+      id: 5,
+      images: [
+        require("../images/car/car6.jpeg"),
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
+      ],
+      price: "7,20,000",
       title: "Tata Tiago",
       location: "Mundamveli",
       year: "2016",
-      distance: "48,700 km",
+      distance: "48,700",
       owners: "2",
-      date: "Sep 23, 2023",
+      date: "Yesterday",
     },
+   
+   
   ];
+
+    // Function to handle navigation to details page
+  const handleCardClick = (carId) => {
+      navigate(`/details/${carId}`, { state: { carId } }); // Navigate to details page with carId
+    };
 
   return (
     <div>
@@ -131,6 +185,37 @@ const ListingPage = () => {
 
       {/* Include CustomNavbar */}
       <CustomNavbar onDropdownToggle={handleDropdownToggle} />
+
+    {/* Breadcrumb Section */}
+    <Container
+        style={{
+          marginTop: "10px",
+          fontSize: "14px",
+          color: "#000000",
+          padding: "10px 20px",
+        }}
+      >
+        <div
+          className="custom-breadcrumb"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "5px", // Space between breadcrumb items
+            fontSize: "14px",
+            color: "#000000", // Black color for text
+          }}
+        >
+          <span>Home</span>
+          <span style={{ color: "#000000" }}>{'>'}</span>
+          <span>Cars</span>
+          <span style={{ color: "#000000" }}>{'>'}</span>
+          <span>Cars in Kerala</span>
+          
+         
+        </div>
+      </Container>
+
+
 
       {/* Breadcrumb */}
       <Container className="mt-4">
@@ -149,11 +234,10 @@ const ListingPage = () => {
             </h2>
           </Col>
 
-          {/* Right: Sort By */}
           <Col md={6} className="text-end">
             <div
               className="d-flex justify-content-end align-items-center"
-              style={{ gap: "8px" }} // Add spacing between elements
+              style={{ gap: "8px" }}
             >
               <span
                 style={{
@@ -173,16 +257,40 @@ const ListingPage = () => {
                     fontSize: "14px",
                     textDecoration: "none",
                     color: "#495057",
-                    padding: "0", // Remove padding for better alignment
+                    padding: "0",
                   }}
                 >
-                  Date Published
-                </Dropdown.Toggle>
+                  {sortOption}
+                  </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item>Price: Low to High</Dropdown.Item>
-                  <Dropdown.Item>Price: High to Low</Dropdown.Item>
-                  <Dropdown.Item>Date Published</Dropdown.Item>
-                  <Dropdown.Item>Distance</Dropdown.Item>
+                  {["Date Published", "Price: Low to High", "Price: High to Low", "Distance"].map(
+                    (option, index) => (
+                      <Dropdown.Item
+                        key={index}
+                        onClick={() => handleSortChange(option)}
+                        style={{
+                          backgroundColor:
+                            sortOption === option ? "#E0F0FF" : "white", // Selected background
+                          color:
+                            sortOption === option ? "#005B96" : "#495057", // Selected text color
+                          fontWeight: sortOption === option ? "bold" : "normal",
+                          transition: "background-color 0.2s ease-in-out", // Smooth hover effect
+                        }}
+                        onMouseEnter={(e) => {
+                          if (sortOption !== option) {
+                            e.target.style.backgroundColor = "#E0F0FF"; // Hover background
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          if (sortOption !== option) {
+                            e.target.style.backgroundColor = "white"; // Default background
+                          }
+                        }}
+                      >
+                        {option}
+                      </Dropdown.Item>
+                    )
+                  )}
                 </Dropdown.Menu>
               </Dropdown>
             </div>
@@ -742,35 +850,27 @@ const ListingPage = () => {
 
           {/* Car Listings Section */}
           <Col md={9}>
-  {/* Car Listings */}
-  <Row>
-    <Col>
-      <div
-        className="d-flex flex-wrap" // Add flex-wrap for wrapping cards
-        style={{
-          gap: "24px", // Spacing between cards
-          paddingBottom: "16px",
-        }}
-      >
-        {carData.map((car, index) => (
-          <div
-            key={index}
-            style={{
-              flex: "0 0 calc((100% - 48px) / 3)", // 3 cards per row with 24px gap
-              height: "303.11px", // Match the height
-              maxWidth: "calc((100% - 48px) / 3)", // Prevent cards from expanding too wide
-            }}
-          >
-            <CarCard {...car} />
-          </div>
-        ))}
-      </div>
-    </Col>
-  </Row>
+          <Row>
+          {/* Car Listings Section */}
+          <Col md={12}>
+            <Row>
+              {carData.map((car) => (
+                <Col key={car.id} md={4}>
+                  <CarCard
+                    {...car}
+                    onClick={() => handleCardClick(car)} // Pass onClick handler
+                  />
+                </Col>
+              ))}
+            </Row>
+          </Col>
+        </Row>
 </Col>
 
         </Row>
       </Container>
+       {/* Add space above the footer */}
+       <div style={{ marginBottom: "50px" }}></div>
 
       {/* Include Footer */}
       <Footer />

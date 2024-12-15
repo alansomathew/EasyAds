@@ -1,203 +1,171 @@
 import React, { useState } from "react";
-import { Container, Navbar, Form, InputGroup, Nav } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap styles
-import { FaSearch, FaHeart, FaBell, FaCommentDots } from "react-icons/fa";
-import LoginModal from "../components/login_signup.js"; // Import the LoginModal component
-import { useNavigate } from "react-router-dom"; // Import useNavigate from React Router
+import { Navbar, Form, InputGroup, Nav, Container, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { FaSearch, FaCommentDots, FaHeart, FaBell } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-export default function AppHeader() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Simulated login state
-  const [showLoginModal, setShowLoginModal] = useState(false); // Modal state
-  const navigate = useNavigate(); // Initialize the navigation hook
-
-  const handleLoginClick = () => {
-    setShowLoginModal(true); // Open login modal
-  };
-
-  const handleLoginClose = () => {
-    setShowLoginModal(false); // Close login modal
-  };
-
-  const handleUserLogin = () => {
-    setIsLoggedIn(true); // Simulate user login
-    setShowLoginModal(false); // Close login modal
-  };
+export default function Header() {
+  const [isLoggedIn] = useState(false); // Removed setIsLoggedIn since it was unused
+  const navigate = useNavigate();
 
   const handleSearchClick = () => {
-    navigate("/listing"); // Navigate to the ListingPage
+    navigate("/search");
+  };
+
+  const handleLoginClick = () => {
+    console.log("Login clicked");
+  };
+
+  const handleSellClick = () => {
+    navigate("/sell");
   };
 
   return (
-    <>
-      <Navbar
-        expand="lg"
-        variant="dark"
-        style={{
-          height: "152px",
-          backgroundColor: "#005B96",
-        }}
-      >
-        <Container fluid className="px-5">
-          {/* Navbar Brand */}
-          <Navbar.Brand href="#home" className="fw-bold text-white">
-            <h1 style={{ fontSize: "2.5rem" }}>EazyAds</h1>
-          </Navbar.Brand>
-
-          <Form className="mx-auto" style={{ width: "60%" }}>
-            <InputGroup
-              style={{
-                borderRadius: "50px", // Rounded edges for the entire search box
-                overflow: "hidden", // Ensures no content spills out
-                boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Subtle shadow
-                backgroundColor: "#F9FAF7", // Light background
-              }}
-            >
-              {/* Left Input: Search Location */}
-              <Form.Control
-                type="text"
-                placeholder="Search location"
-                style={{
-                  border: "none", // Removes border
-                  padding: "15px 20px", // Increases padding for height
-                  fontSize: "14px", // Adjust font size
-                  height: "50px", // Explicitly sets the height
-                  backgroundColor: "#F9FAF7", // Matches the container background
-                  borderRadius: "50px 0 0 50px", // Rounds the left edges
-                }}
-                className="no-focus-border"
-              />
-
-              {/* Separator */}
-              <div
-                style={{
-                  width: "1px",
-                  backgroundColor: "#E0E0E0", // Light gray color
-                }}
-              ></div>
-
-              {/* Right Input: Search Cars, Bikes and more */}
-              <Form.Control
-                type="text"
-                placeholder="Search Cars, Bikes and more"
-                style={{
-                  border: "none", // Removes border
-                  padding: "15px 20px", // Increases padding for height
-                  fontSize: "14px", // Adjust font size
-                  height: "50px", // Explicitly sets the height
-                  backgroundColor: "#F9FAF7", // Matches the container background
-                }}
-                className="no-focus-border"
-              />
-
-                      {/* Circular Button Container */}
-        <div
+    <Navbar
+      expand="lg"
+      style={{ backgroundColor: "#005B96", height: "auto", padding: "10px 0" }}
+      variant="dark"
+    >
+      <Container className="d-flex flex-column flex-lg-row align-items-center">
+        {/* Logo */}
+        <Navbar.Brand
+          href="/"
+          className="text-white"
           style={{
-            backgroundColor: "#FFF", // White background
-            borderRadius: "50%", // Circular container
-            padding: "5px", // Space around the yellow circle
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "10px", // Slight spacing from the search box
+            fontFamily: "Georgia, serif",
+            fontStyle: "italic",
+            fontSize: "2rem",
           }}
         >
-          {/* Circular Button */}
-          <InputGroup.Text
-            role="button"
+          EazyAds
+        </Navbar.Brand>
+
+        {/* Centered Search Bar */}
+        <Form className="d-flex justify-content-center flex-grow-1 my-3 my-lg-0">
+          <InputGroup
             style={{
-              backgroundColor: "#FFD700", // Yellow color
-              border: "none", // No border
-              borderRadius: "50%", // Circular shape
-              width: "40px", // Fixed size
-              height: "40px", // Fixed size
-              display: "flex", // Center the icon
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer", // Makes it clickable
-              boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)", // Shadow for depth
+              borderRadius: "30px",
+              overflow: "hidden",
+              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+              backgroundColor: "#F9FAF7",
+              height: "50px",
+              maxWidth: "600px",
+              width: "100%",
             }}
-            onClick={handleSearchClick} // Redirect on click
           >
-            <FaSearch style={{ color: "white", fontSize: "16px" }} />
-          </InputGroup.Text>
-        </div>
+            <Form.Control
+              type="text"
+              placeholder="Search location"
+              style={{
+                border: "none",
+                backgroundColor: "#F9FAF7",
+                padding: "10px 15px",
+              }}
+            />
+            <div
+              style={{
+                width: "1px",
+                backgroundColor: "#E0E0E0",
+              }}
+            ></div>
+            <Form.Control
+              type="text"
+              placeholder="Search Cars, Bikes and more"
+              style={{
+                border: "none",
+                backgroundColor: "#F9FAF7",
+                padding: "10px 15px",
+              }}
+            />
+            <Button
+              style={{
+                backgroundColor: "#FFD700",
+                border: "none",
+                borderRadius: "50%",
+                width: "40px",
+                height: "40px",
+              }}
+              onClick={handleSearchClick}
+            >
+              <FaSearch style={{ color: "white" }} />
+            </Button>
+          </InputGroup>
+        </Form>
 
+        {/* Right Section */}
+        <Nav className="ms-auto d-flex align-items-center">
+          <Nav.Link href="#chat" className="text-white mx-2">
+            <FaCommentDots size={20} />
+          </Nav.Link>
+          <Nav.Link href="#wishlist" className="text-white mx-2">
+            <FaHeart size={20} />
+          </Nav.Link>
+          <Nav.Link href="#notifications" className="text-white mx-2">
+            <FaBell size={20} />
+          </Nav.Link>
 
-            </InputGroup>
-          </Form>
+          {isLoggedIn ? (
+            <div className="d-flex align-items-center">
+              <img
+                src="https://via.placeholder.com/40"
+                alt="User Avatar"
+                className="rounded-circle"
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  marginRight: "10px",
+                }}
+              />
+              <Button
+                style={{
+                  backgroundColor: "#FFD700",
+                  border: "none",
+                  fontWeight: "bold",
+                }}
+                onClick={handleSellClick}
+              >
+                + Sell
+              </Button>
+            </div>
+          ) : (
+            <>
+              <Button
+                variant="outline-light"
+                style={{
+                  fontWeight: "bold",
+                  width: "86px", // Hug width
+                  height: "48px", // Fixed height
+                  border: "4px solid white", // Thick white border
+                  borderRadius: "15px",
+                  padding: "8px 14px", // Adjusted padding
+                  color: "white",
+                  backgroundColor: "transparent",
+                  marginRight: "10px", // Add gap to the right
 
-          {/* Navigation Icons */}
-          <Nav className="ms-auto d-flex align-items-center">
-            <Nav.Link href="#chat" className="text-white me-3">
-              <FaCommentDots /> Chat
-            </Nav.Link>
-            <Nav.Link href="#wishlist" className="text-white me-3">
-              <FaHeart /> Wishlist
-            </Nav.Link>
-            <Nav.Link href="#notification" className="text-white me-3">
-              <FaBell /> Notification
-            </Nav.Link>
-
-            {/* Dynamic Content: Login/Avatar */}
-            {isLoggedIn ? (
-              <div className="d-flex align-items-center">
-                <img
-                  src="https://via.placeholder.com/40"
-                  alt="User Avatar"
-                  className="rounded-circle"
-                  style={{ width: "40px", height: "40px", cursor: "pointer" }}
-                />
-                <span
-                  className="text-white me-4"
-                  style={{
-                    cursor: "pointer",
-                    fontSize: "14px",
-                    marginLeft: "10px",
-                  }}
-                >
-                  ▼
-                </span>
-                <button
-                  className="btn btn-warning"
-                  style={{
-                    fontWeight: "bold",
-                    border: "none",
-                    marginLeft: "10px",
-                  }}
-                >
-                  + Sell
-                </button>
-              </div>
-            ) : (
-              <>
-                <button
-                  className="btn btn-outline-light me-2"
-                  onClick={handleLoginClick}
-                  style={{ fontWeight: "bold" }}
-                >
-                  Login
-                </button>
-                <button
-                  className="btn btn-warning"
-                  style={{
-                    fontWeight: "bold",
-                    border: "none",
-                  }}
-                >
-                  + Sell
-                </button>
-              </>
-            )}
-          </Nav>
-        </Container>
-      </Navbar>
-
-      {/* Login Modal */}
-      <LoginModal
-        show={showLoginModal}
-        onClose={handleLoginClose}
-        onContinue={handleUserLogin}
-      />
-    </>
+                }}
+                onClick={handleLoginClick}
+              >
+                Login
+              </Button>
+              <Button
+  style={{
+    backgroundColor: "#FFD700", // Yellow background
+    border: "none",
+    fontWeight: "bold",
+    borderRadius: "16px", // Rounded corners
+    width: "101px", // Fixed width
+    height: "48px", // Fixed height
+    padding: "12px 24px", // Padding: Top/Bottom: 12px, Left/Right: 24px
+    gap: "4px", // Gap for internal spacing if needed
+  }}
+  onClick={handleSellClick}
+>
+                + Sell
+              </Button>
+            </>
+          )}
+        </Nav>
+      </Container>
+    </Navbar>
   );
 }
