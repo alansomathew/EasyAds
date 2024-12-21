@@ -1,104 +1,128 @@
 import React, { useState } from "react";
-import { Nav, Navbar, Container } from "react-bootstrap";
+import { Navbar, Nav, Container } from "react-bootstrap";
 
-function CustomNavbar({ onDropdownToggle }) {
+function CustomNavbar() {
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const toggleDropdown = () => {
-    const newState = !showDropdown;
-    setShowDropdown(newState);
-    onDropdownToggle(newState); // Notify parent of dropdown state
-  };
+  const toggleDropdown = () => setShowDropdown(!showDropdown);
 
   return (
     <div>
-      {/* Navbar */}
-      <Navbar expand="lg" style={{ backgroundColor: "#F9FAF7" }}>
-        <Container>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mx-auto">
-              {/* All Categories */}
-              <div
-                style={{
-                  position: "relative",
-                }}
-              >
-                <div
-                  style={{
-                    backgroundColor: "#FFD700", // Yellow background
-                    padding: "10px 20px",
-                    borderRadius: "5px",
-                    fontWeight: "bold",
-                    color: "#000",
-                    cursor: "pointer",
-                  }}
-                  onClick={toggleDropdown}
-                >
-                  All Categories <span style={{ fontSize: "14px" }}>▼</span>
-                </div>
-              </div>
+      {/* Navigation Bar */}
+      <Navbar
+        expand="lg"
+        style={{
+          backgroundColor: "#F9FAF7", // Light background color
+          width: "2000px", // Full-width
+          height: "53px", // Fixed height
+          padding: "16px 64px 16px 287px", // Top: 16px, Right: 64px, Bottom: 16px, Left: 287px
+          display: "flex",
+          alignItems: "center",
+          gap: "24px", // Gap between elements
+          margin: "0 auto", // Center align on the page
+        }}
+      >
+        <Container className="d-flex align-items-center" fluid>
+          <Nav className="align-items-center">
+            {/* All Categories Button */}
+            <div
+              style={{
+                backgroundColor: "#FFD700", // Yellow background
+                width: "199px", // Fixed width
+                height: "53px", // Fixed height
+                padding: "0 24px", // Left and right padding
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between", // Space between text and dropdown icon
+                borderRadius: "0px", // Rounded edges
+                fontWeight: "bold",
+                color: "#000",
+                cursor: "pointer",
+              }}
+              onClick={toggleDropdown}
+            >
+              <span>All Categories</span>
+              <span style={{ fontSize: "18px" }}>▼</span>
+            </div>
 
-              {/* Other Nav Items */}
-              <Nav.Link href="#">Cars</Nav.Link>
-              <Nav.Link href="#">Bikes</Nav.Link>
-              <Nav.Link href="#">Scooters</Nav.Link>
-              <Nav.Link href="#">Houses and Flats (for sale)</Nav.Link>
-              <Nav.Link href="#">Houses and Flats (for rent)</Nav.Link>
-              <Nav.Link href="#">Plots</Nav.Link>
-              <Nav.Link href="#">Agricultural Lands</Nav.Link>
-              <Nav.Link href="#">Mobile</Nav.Link>
-              <Nav.Link href="#">Home Appliances</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
+            {/* Other Nav Items */}
+            <Nav.Link href="#" style={{ fontSize: "14px", color: "#000", marginLeft: "24px" }}>
+              Cars
+            </Nav.Link>
+            <Nav.Link href="#" style={{ fontSize: "14px", color: "#000", marginLeft: "24px" }}>
+              Bikes
+            </Nav.Link>
+            <Nav.Link href="#" style={{ fontSize: "14px", color: "#000", marginLeft: "24px" }}>
+              Scooters
+            </Nav.Link>
+            <Nav.Link href="#" style={{ fontSize: "14px", color: "#000", marginLeft: "24px" }}>
+              Houses and Flats (for sale)
+            </Nav.Link>
+            <Nav.Link href="#" style={{ fontSize: "14px", color: "#000", marginLeft: "24px" }}>
+              Houses and Flats (for rent)
+            </Nav.Link>
+            <Nav.Link href="#" style={{ fontSize: "14px", color: "#000", marginLeft: "24px" }}>
+              Plots
+            </Nav.Link>
+            <Nav.Link href="#" style={{ fontSize: "14px", color: "#000", marginLeft: "24px" }}>
+              Agricultural Lands
+            </Nav.Link>
+            <Nav.Link href="#" style={{ fontSize: "14px", color: "#000", marginLeft: "24px" }}>
+              Mobile
+            </Nav.Link>
+            <Nav.Link href="#" style={{ fontSize: "14px", color: "#000", marginLeft: "24px" }}>
+              Home Appliances
+            </Nav.Link>
+          </Nav>
         </Container>
       </Navbar>
 
-      {/* Dropdown */}
+      {/* Dropdown Menu */}
       {showDropdown && (
         <div
           style={{
-            position: "relative", // Pin dropdown to screen
-            top: "-10px", // Adjust based on navbar height
-            left: "0", // Start from the leftmost screen edge
-            width: "100vw", // Full screen width
-            backgroundColor: "#FFD700", // Yellow background
+            position: "absolute",
+            top: "100%",
+            left: "0",
+            width: "100%",
+            backgroundColor: "#FFD700",
             zIndex: 1000,
-            padding: "20px 0", // Padding for spacing
+            padding: "20px 0",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
           }}
         >
           <Container
             style={{
               display: "flex",
               justifyContent: "space-between",
-              flexWrap: "wrap", // Adjust content for smaller screens
+              flexWrap: "wrap", // Allow wrapping on smaller screens
+              gap: "20px", // Add spacing between dropdown sections
             }}
           >
-            {/* Dropdown Items */}
             <div>
-              <h6 style={{ fontWeight: "bold" }}>4 Wheelers</h6>
-              <ul style={{ listStyle: "none", padding: 0 }}>
+              <h6 style={{ fontWeight: "bold", marginBottom: "10px" }}>4 Wheelers</h6>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                 <li>Cars</li>
               </ul>
-              <h6 style={{ fontWeight: "bold", marginTop: "10px" }}>
+              <h6 style={{ fontWeight: "bold", marginTop: "10px", marginBottom: "10px" }}>
                 2 Wheelers
               </h6>
-              <ul style={{ listStyle: "none", padding: 0 }}>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                 <li>Bikes</li>
                 <li>Scooters</li>
                 <li>Cycles</li>
               </ul>
-              <h6 style={{ fontWeight: "bold", marginTop: "10px" }}>
+              <h6 style={{ fontWeight: "bold", marginTop: "10px", marginBottom: "10px" }}>
                 Other Vehicles
               </h6>
-              <ul style={{ listStyle: "none", padding: 0 }}>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                 <li>Auto</li>
                 <li>Truck</li>
               </ul>
             </div>
             <div>
-              <h6 style={{ fontWeight: "bold" }}>Rent</h6>
-              <ul style={{ listStyle: "none", padding: 0 }}>
+              <h6 style={{ fontWeight: "bold", marginBottom: "10px" }}>Rent</h6>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                 <li>Houses and Flats</li>
                 <li>Commercial Properties</li>
                 <li>Plots</li>
@@ -106,8 +130,8 @@ function CustomNavbar({ onDropdownToggle }) {
               </ul>
             </div>
             <div>
-              <h6 style={{ fontWeight: "bold" }}>Sale</h6>
-              <ul style={{ listStyle: "none", padding: 0 }}>
+              <h6 style={{ fontWeight: "bold", marginBottom: "10px" }}>Sale</h6>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                 <li>Houses and Flats</li>
                 <li>Commercial Properties</li>
                 <li>Plots</li>
@@ -115,8 +139,8 @@ function CustomNavbar({ onDropdownToggle }) {
               </ul>
             </div>
             <div>
-              <h6 style={{ fontWeight: "bold" }}>Electronics</h6>
-              <ul style={{ listStyle: "none", padding: 0 }}>
+              <h6 style={{ fontWeight: "bold", marginBottom: "10px" }}>Electronics</h6>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                 <li>Mobile</li>
                 <li>Home Appliances</li>
               </ul>

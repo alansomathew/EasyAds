@@ -143,7 +143,7 @@ const HouseCard = ({ images, price, title, location, description, date }) => {
             style={{
               fontWeight: "bold",
               fontSize: "18px",
-              color: "#005B96",
+              color: "#000000",
             }}
           >
             ₹ {price}

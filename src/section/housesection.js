@@ -62,7 +62,7 @@ const HousesSection = () => {
     <div className="container mt-5" style={{ maxWidth: "1312px" }}>
       {/* Section Header */}
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h3 className="text-dark fw-bold " style={{ textAlign: "left" }}>
+        <h3 className="fw-bold " style={{ textAlign: "left", color: "blue",}}>
           Houses and Flats for Sale
         </h3>
         <a

@@ -49,6 +49,7 @@ const CarCard = ({
         borderRadius: "16px", // Removed rounded corners
         overflow: "hidden",
         backgroundColor: "transparent", // Transparent background
+        fontFamily: "'Poppins", 
         
       
       }}
@@ -186,7 +187,7 @@ const CarCard = ({
             style={{
               fontWeight: "bold",
               fontSize: "18px",
-              color: "#005B96",
+              color: "#000000",
             }}
           >
             ₹ {price}
