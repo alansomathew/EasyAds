@@ -1,5 +1,7 @@
 import React from "react";
 import HouseCard from "../components/housecard"; // Import HouseCard component
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 const HousesSection = () => {
   // Mock data for houses
@@ -19,7 +21,7 @@ const HousesSection = () => {
     {
       id: 2,
       images: [
-        require("../images/house/house1.jpeg"),
+        require("../images/house/house2.jpg"),
         "https://via.placeholder.com/300x200?text=House+2",
       ],
       price: "52,00,000",
@@ -44,6 +46,7 @@ const HousesSection = () => {
       id: 4,
       images: [
         require("../images/house/house1.jpeg"),
+        require("../images/house/house2.jpg"),
         "https://via.placeholder.com/300x200?text=House+4",
       ],
       price: "75,00,000",
@@ -62,20 +65,29 @@ const HousesSection = () => {
     <div className="container mt-5" style={{ maxWidth: "1312px" }}>
       {/* Section Header */}
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h3 className="fw-bold " style={{ textAlign: "left", color: "blue",}}>
+        <h3 className="fw-bold " style={{ textAlign: "left", color: "#005B96",}}>
           Houses and Flats for Sale
         </h3>
         <a
-          href="#see-all"
-          className="text-primary"
-          style={{
-            fontSize: "16px",
-            textDecoration: "none",
-          }}
-          onClick={handleSeeAll}
-        >
-          See All →
-        </a>
+  href="#see-all"
+  className="text-primary"
+  style={{
+    fontSize: "16px",
+    fontFamily: "Poppins", // Correct the font style
+    textDecoration: "none",
+    fontWeight: "bold", // Make the text bold
+    display: "inline-block", // Ensure border and width apply correctly
+    padding: "4px 8px", // Optional: Add padding for spacing
+    transform: "rotate(0deg)", // Apply rotation
+    color: "#005B96", // Text color
+  }}
+  onClick={handleSeeAll}
+>
+  See All  <i className="fa-solid fa-arrow-right" style={{ marginLeft: "8px" }}></i>
+</a>
+
+
+
       </div>
 
       {/* Responsive Grid Layout */}

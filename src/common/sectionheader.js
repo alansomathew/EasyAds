@@ -11,12 +11,29 @@ const SectionHeader = ({ title, onSeeAll }) => {
       
       {/* See All Link */}
       <button
-        className="btn btn-link text-decoration-none text-primary p-0"
-        onClick={onSeeAll}
-        style={{ fontSize: '16px' }}
-      >
-        See All →
-      </button>
+  className="btn btn-link text-decoration-none text-primary"
+  onClick={onSeeAll}
+  style={{
+    fontSize: "16px",
+    fontFamily: "Poppins", // Correct the font style
+    textDecoration: "none",
+    fontWeight: "bold", // Make the text bold
+    display: "inline-block", // Ensure border and width apply correctly
+    padding: "4px 8px", // Optional: Add padding for spacing
+    transform: "rotate(0deg)", // Apply rotation
+    color: "#005B96", // Text color
+  }}
+>
+  See All
+  <i
+    className="fa-solid fa-arrow-right"
+    style={{
+      marginLeft: "8px",
+      
+    }}
+  ></i>
+</button>
+
     </div>
   );
 };

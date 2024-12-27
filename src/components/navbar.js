@@ -13,13 +13,13 @@ function CustomNavbar() {
         expand="lg"
         style={{
           backgroundColor: "#F9FAF7", // Light background color
-          width: "2000px", // Full-width
+          width: "100%", // Full width
           height: "53px", // Fixed height
-          padding: "16px 64px 16px 287px", // Top: 16px, Right: 64px, Bottom: 16px, Left: 287px
+          padding: "16px 64px", // Spacing
           display: "flex",
           alignItems: "center",
           gap: "24px", // Gap between elements
-          margin: "0 auto", // Center align on the page
+          
         }}
       >
         <Container className="d-flex align-items-center" fluid>
@@ -28,16 +28,17 @@ function CustomNavbar() {
             <div
               style={{
                 backgroundColor: "#FFD700", // Yellow background
-                width: "199px", // Fixed width
+                width: "200px", // Fixed width
                 height: "53px", // Fixed height
-                padding: "0 24px", // Left and right padding
+                padding: "0 24px", // Padding inside button
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "space-between", // Space between text and dropdown icon
-                borderRadius: "0px", // Rounded edges
+                justifyContent: "space-between",
+                borderRadius: "4px", // Slightly rounded edges
                 fontWeight: "bold",
                 color: "#000",
                 cursor: "pointer",
+                marginLeft: "30px",
               }}
               onClick={toggleDropdown}
             >
@@ -45,34 +46,30 @@ function CustomNavbar() {
               <span style={{ fontSize: "18px" }}>▼</span>
             </div>
 
-            {/* Other Nav Items */}
-            <Nav.Link href="#" style={{ fontSize: "14px", color: "#000", marginLeft: "24px" }}>
-              Cars
-            </Nav.Link>
-            <Nav.Link href="#" style={{ fontSize: "14px", color: "#000", marginLeft: "24px" }}>
-              Bikes
-            </Nav.Link>
-            <Nav.Link href="#" style={{ fontSize: "14px", color: "#000", marginLeft: "24px" }}>
-              Scooters
-            </Nav.Link>
-            <Nav.Link href="#" style={{ fontSize: "14px", color: "#000", marginLeft: "24px" }}>
-              Houses and Flats (for sale)
-            </Nav.Link>
-            <Nav.Link href="#" style={{ fontSize: "14px", color: "#000", marginLeft: "24px" }}>
-              Houses and Flats (for rent)
-            </Nav.Link>
-            <Nav.Link href="#" style={{ fontSize: "14px", color: "#000", marginLeft: "24px" }}>
-              Plots
-            </Nav.Link>
-            <Nav.Link href="#" style={{ fontSize: "14px", color: "#000", marginLeft: "24px" }}>
-              Agricultural Lands
-            </Nav.Link>
-            <Nav.Link href="#" style={{ fontSize: "14px", color: "#000", marginLeft: "24px" }}>
-              Mobile
-            </Nav.Link>
-            <Nav.Link href="#" style={{ fontSize: "14px", color: "#000", marginLeft: "24px" }}>
-              Home Appliances
-            </Nav.Link>
+            {/* Navigation Links */}
+            {[
+              "Cars",
+              "Bikes",
+              "Scooters",
+              "Houses and Flats (for sale)",
+              "Houses and Flats (for rent)",
+              "Plots",
+              "Agricultural Lands",
+              "Mobile",
+              "Home Appliances",
+            ].map((item, index) => (
+              <Nav.Link
+                key={index}
+                href="#"
+                style={{
+                  fontSize: "14px",
+                  color: "#000",
+                  marginLeft: index === 0 ? "24px" : "16px", // Adjust spacing
+                }}
+              >
+                {item}
+              </Nav.Link>
+            ))}
           </Nav>
         </Container>
       </Navbar>
@@ -99,52 +96,61 @@ function CustomNavbar() {
               gap: "20px", // Add spacing between dropdown sections
             }}
           >
-            <div>
-              <h6 style={{ fontWeight: "bold", marginBottom: "10px" }}>4 Wheelers</h6>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                <li>Cars</li>
-              </ul>
-              <h6 style={{ fontWeight: "bold", marginTop: "10px", marginBottom: "10px" }}>
-                2 Wheelers
-              </h6>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                <li>Bikes</li>
-                <li>Scooters</li>
-                <li>Cycles</li>
-              </ul>
-              <h6 style={{ fontWeight: "bold", marginTop: "10px", marginBottom: "10px" }}>
-                Other Vehicles
-              </h6>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                <li>Auto</li>
-                <li>Truck</li>
-              </ul>
-            </div>
-            <div>
-              <h6 style={{ fontWeight: "bold", marginBottom: "10px" }}>Rent</h6>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                <li>Houses and Flats</li>
-                <li>Commercial Properties</li>
-                <li>Plots</li>
-                <li>Agricultural Lands</li>
-              </ul>
-            </div>
-            <div>
-              <h6 style={{ fontWeight: "bold", marginBottom: "10px" }}>Sale</h6>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                <li>Houses and Flats</li>
-                <li>Commercial Properties</li>
-                <li>Plots</li>
-                <li>Agricultural Lands</li>
-              </ul>
-            </div>
-            <div>
-              <h6 style={{ fontWeight: "bold", marginBottom: "10px" }}>Electronics</h6>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                <li>Mobile</li>
-                <li>Home Appliances</li>
-              </ul>
-            </div>
+            {/* Dropdown Sections */}
+            {[
+              {
+                title: "4 Wheelers",
+                items: ["Cars"],
+              },
+              {
+                title: "2 Wheelers",
+                items: ["Bikes", "Scooters", "Cycles"],
+              },
+              {
+                title: "Other Vehicles",
+                items: ["Auto", "Truck"],
+              },
+              {
+                title: "Rent",
+                items: [
+                  "Houses and Flats",
+                  "Commercial Properties",
+                  "Plots",
+                  "Agricultural Lands",
+                ],
+              },
+              {
+                title: "Sale",
+                items: [
+                  "Houses and Flats",
+                  "Commercial Properties",
+                  "Plots",
+                  "Agricultural Lands",
+                ],
+              },
+              {
+                title: "Electronics",
+                items: ["Mobile", "Home Appliances"],
+              },
+            ].map((section, index) => (
+              <div key={index}>
+                <h6
+                  style={{
+                    fontWeight: "bold",
+                    marginBottom: "10px",
+                  }}
+                >
+                  {section.title}
+                </h6>
+                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                  {section.items.map((item, i) => (
+                    <li key={i} style={{ marginBottom: "8px" }}>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </Container>
         </div>
       )}

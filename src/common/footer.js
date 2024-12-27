@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="container">
         <div className="row d-flex justify-content-between">
           {/* Left Section: Logo and Social Links */}
-          <div className="col-lg-3 col-md-6">
+          <div className="col-lg-3 col-md-6 text-start">
             <h3 style={{ fontSize: "24px", fontWeight: "bold" }}>EazyAds</h3>
             <p className="mt-3">FOLLOW US</p>
             <div className="d-flex">
@@ -17,7 +17,7 @@ const Footer = () => {
                 className="me-3"
                 style={{ color: "white", fontSize: "20px", textDecoration: "none" }}
               >
-                <i className="fab fa-twitter"></i>
+                <i class="fa-brands fa-x-twitter"></i>
               </a>
               <a
                 href="https://facebook.com"
@@ -40,7 +40,7 @@ const Footer = () => {
           </div>
 
           {/* Middle Section: Popular Products */}
-          <div className="col-lg-3 col-md-6">
+          <div className="col-lg-3 col-md-6 text-start">
             <h5 style={{ fontSize: "18px", fontWeight: "bold" }}>Popular Products</h5>
             <ul className="list-unstyled mt-3">
               <li className="mb-2">
@@ -67,7 +67,7 @@ const Footer = () => {
           </div>
 
           {/* Middle Section: Popular Locations */}
-          <div className="col-lg-3 col-md-6">
+          <div className="col-lg-3 col-md-6 text-start">
             <h5 style={{ fontSize: "18px", fontWeight: "bold" }}>Popular Locations</h5>
             <ul className="list-unstyled mt-3">
               <li className="mb-2">
@@ -99,7 +99,7 @@ const Footer = () => {
           </div>
 
           {/* Right Section: About Us */}
-          <div className="col-lg-3 col-md-6">
+          <div className="col-lg-3 col-md-6 text-start">
             <h5 style={{ fontSize: "18px", fontWeight: "bold" }}>About Us</h5>
             <ul className="list-unstyled mt-3">
               <li className="mb-2">
