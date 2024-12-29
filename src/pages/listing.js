@@ -118,26 +118,9 @@ const ListingPage = () => {
       date: "Yesterday",
     },
     {
-      id: 3,
-      images: [
-        require("../images/car/car8.jpeg"),
-        "https://via.placeholder.com/300x200?text=Car+B",
-        "https://via.placeholder.com/300x200?text=Car+C",
-        "https://via.placeholder.com/300x200?text=Car+B",
-        "https://via.placeholder.com/300x200?text=Car+C",
-      ],
-      price: "7,20,000",
-      title: "Tata Tiago",
-      location: "Mundamveli",
-      year: "2016",
-      distance: "48,700",
-      owners: "2",
-      date: "Yesterday",
-    },
-    {
       id: 4,
       images: [
-        require("../images/car/car7.jpeg"),
+        require("../images/car/car1.jpeg"),
         "https://via.placeholder.com/300x200?text=Car+B",
         "https://via.placeholder.com/300x200?text=Car+C",
         "https://via.placeholder.com/300x200?text=Car+B",
@@ -151,9 +134,25 @@ const ListingPage = () => {
       owners: "2",
       date: "Yesterday",
     },
-   
     {
       id: 5,
+      images: [
+        require("../images/car/car5.jpeg"),
+        "https://via.placeholder.com/300x200?text=Car+C",
+        "https://via.placeholder.com/300x200?text=Car+C",
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
+      ],
+      price: "7,20,000",
+      title: "Tata Tiago",
+      location: "Mundamveli",
+      year: "2016",
+      distance: "48,700",
+      owners: "2",
+      date: "Yesterday",
+    },
+    {
+      id: 6,
       images: [
         require("../images/car/car6.jpeg"),
         "https://via.placeholder.com/300x200?text=Car+B",
@@ -169,6 +168,58 @@ const ListingPage = () => {
       owners: "2",
       date: "Yesterday",
     },
+    {
+      id: 7,
+      images: [
+        require("../images/car/car1.jpeg"),
+        require("../images/car/car2.jpeg"),
+        require("../images/car/car3.jpeg"),
+        require("../images/car/car4.jpeg"),
+        require("../images/car/car5.jpeg"),
+      ],
+      price: "7,20,000",
+      title: "Tata Tiago",
+      location: "Mundamveli",
+      year: "2016",
+      distance: "48,700",
+      owners: "2",
+      date: "Yesterday",
+    },
+    {
+      id: 8,
+      images: [
+        require("../images/car/car6.jpeg"),
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
+      ],
+      price: "7,20,000",
+      title: "Tata Tiago",
+      location: "Mundamveli",
+      year: "2016",
+      distance: "48,700",
+      owners: "2",
+      date: "Yesterday",
+    },
+    {
+      id: 9,
+      images: [
+        require("../images/car/car7.jpeg"),
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
+        "https://via.placeholder.com/300x200?text=Car+B",
+        "https://via.placeholder.com/300x200?text=Car+C",
+      ],
+      price: "7,20,000",
+      title: "Tata Tiago",
+      location: "Mundamveli",
+      year: "2016",
+      distance: "48,700",
+      owners: "2",
+      date: "Yesterday",
+    },
+  
    
    
   ];
@@ -308,7 +359,8 @@ const ListingPage = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+            border: "1px solid #D1D5DB", 
+            
           }}
         >
           <div style={{ display: "flex", gap: "8px" }}>
@@ -341,17 +393,29 @@ const ListingPage = () => {
           </div>
           {tags.length > 0 && (
             <Button
-              variant="link"
-              style={{
-                color: "#005B96",
-                fontSize: "14px",
-                fontWeight: "bold",
-                textDecoration: "none",
-              }}
-              onClick={clearAllTags}
-            >
-              Clear All
-            </Button>
+            variant="link"
+            style={{
+              color: "#005B96",
+              fontSize: "14px",
+              fontWeight: "bold",
+              fontFamily: "Poppins", // Applying Poppins font
+              position: "relative",
+              textDecoration: "none",
+              paddingBottom: "4px", // Adds some space to accommodate the underline
+            }}
+            onClick={clearAllTags}
+          >
+            Clear All
+            <span style={{
+              position: "absolute",
+              bottom: "0",
+              left: "15%", // Adjusts the start of the underline
+              width: "75%", // Adjusts the length of the underline
+              height: "2px", // Thickness of the underline
+              backgroundColor: "#005B96", // Color of the underline
+            }}></span>
+          </Button>
+          
           )}
         </div>
       </Container>
@@ -850,19 +914,30 @@ const ListingPage = () => {
 
           {/* Car Listings Section */}
           <Col md={9}>
+          
           <Row>
           {/* Car Listings Section */}
           <Col md={12}>
-            <Row>
-              {carData.map((car) => (
-                <Col key={car.id} md={4}>
-                  <CarCard
-                    {...car}
-                    onClick={() => handleCardClick(car)} // Pass onClick handler
-                  />
-                </Col>
-              ))}
-            </Row>
+          
+          <Row>
+            
+          {carData.map((car) => (
+  <Col md={4} key={car.id}>
+    <CarCard
+      images={car.images}
+      price={car.price}
+      title={car.title}
+      location={car.location}
+      year={car.year}
+      distance={car.distance}
+      owners={car.owners}
+      date={car.date}
+      onClick={() => handleCardClick(car.id)} // Navigate on card click
+    />
+  </Col>
+))}
+
+  </Row>
           </Col>
         </Row>
 </Col>

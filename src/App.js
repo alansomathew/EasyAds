@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Im
 import Home from './pages/home';
 import ListingPage from './pages/listing';
 import DetailsPage from './pages/details';
+import WishlistPage from './pages/wishlist'; 
+import AdsPage from './pages/ads'; 
 
 function App() {
   return (
@@ -16,6 +18,12 @@ function App() {
 
           {/* Route for the DetailsPage */}
           <Route path="/details/:id" element={<DetailsPage />} />
+
+          <Route path="/wishlist" element={<WishlistPage />} />
+
+          <Route path="/ads" element={<AdsPage />} />
+
+
         </Routes>
         
       </div>

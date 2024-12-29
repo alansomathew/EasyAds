@@ -11,7 +11,7 @@ export default function Header() {
   const navigate = useNavigate();
 
   const handleSearchClick = () => {
-    navigate("/search");
+    navigate("/listing");
   };
 
   const handleLoginClick = () => {

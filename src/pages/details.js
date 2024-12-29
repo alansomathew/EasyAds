@@ -1,4 +1,4 @@
-import React from "react";
+import React,  { useState }  from "react";
 import { Container, Row, Col, Button, Image, Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AppHeader from "../common/header"; // Import the header component
@@ -6,6 +6,17 @@ import CustomNavbar from "../components/navbar"; // Import the navbar component
 import Footer from "../common/footer"; // Import the footer component
 
 const ProductDetailsPage = () => {
+
+  const images = [
+    require("../images/car/car1.jpeg"),
+    require("../images/car/car2.jpeg"),
+    require("../images/car/car3.jpeg"),
+    require("../images/car/car4.jpeg"),
+    require("../images/car/car5.jpeg"),
+  ];
+
+  const [selectedImage, setSelectedImage] = useState(images[0]);
+
   return (
     <div style={{ backgroundColor: "#F9FAF7", paddingBottom: "50px" }}>
       {/* Include Header */}
@@ -25,15 +36,15 @@ const ProductDetailsPage = () => {
               color: "#6c757d",
             }}
           >
-            <span style={{ cursor: "pointer", color: "#005B96" }}>Home</span>
+            <span style={{ cursor: "pointer", color: "#292D32" }}>Home</span>
             <span style={{ margin: "0 8px" }}> &gt; </span>
-            <span style={{ cursor: "pointer", color: "#005B96" }}>Cars</span>
+            <span style={{ cursor: "pointer", color: "#292D32" }}>Cars</span>
             <span style={{ margin: "0 8px" }}> &gt; </span>
-            <span style={{ cursor: "pointer", color: "#005B96" }}>
+            <span style={{ cursor: "pointer", color: "#292D32" }}>
               Cars in Kerala
             </span>
             <span style={{ margin: "0 8px" }}> &gt; </span>
-            <span style={{ color: "#212529", fontWeight: "bold" }}>
+            <span style={{ color: "#212529" }}>
               Mercedes - Benz C Class
             </span>
           </nav>
@@ -43,6 +54,13 @@ const ProductDetailsPage = () => {
       {/* Main Content */}
       <Container>
         <Row>
+        <h2 style={{fontFamily: "'Poppins",
+      fontWeight: 600,
+      fontSize: "32px",
+      textAlign: "left",
+      lineHeight: "48px", color: "#005B96" }}>
+    Mercedes - Benz C Class (2015)
+  </h2>
           <Col md={8}>
             {/* Product Images */}
             <div className="mb-3" style={{ borderRadius: "16px" }}>
@@ -50,29 +68,31 @@ const ProductDetailsPage = () => {
                 {/* Featured Image */}
                 <Card.Img
                   variant="top"
-                  src="https://via.placeholder.com/800x400"
+                  src={selectedImage}
                   style={{
-                    borderRadius: "16px",
-                    width: "100%",
+                    borderRadius: "32px",
+                    width: "825px",
+                    height: "372px",
                     objectFit: "cover",
                     marginBottom: "16px",
                   }}
                 />
-                {/* Thumbnails */}
-                <div className="d-flex justify-content-between">
-                  {[...Array(5)].map((_, idx) => (
+                 {/* Thumbnail Images */}
+                 <div className="d-flex justify-content-between mt-3">
+                  {images.map((image, idx) => (
                     <div
                       key={idx}
+                      onClick={() => setSelectedImage(image)}
                       style={{
-                        flex: "0 0 calc((100% - 32px) / 5)", // Equal width for 5 thumbnails
+                        flex: "0 0 calc((100% - 32px) / 5)",
                         borderRadius: "12px",
                         overflow: "hidden",
-                        border: "2px solid #E0E0E0", // Border for active effect
                         cursor: "pointer",
+                        border: selectedImage === image ? "2px solid #005B96" : "2px solid #E0E0E0",
                       }}
                     >
                       <Image
-                        src="https://via.placeholder.com/150"
+                        src={image}
                         style={{
                           height: "80px",
                           objectFit: "cover",
@@ -141,7 +161,7 @@ const ProductDetailsPage = () => {
                 <div
                   style={{
                     fontSize: "19px",
-                    color: "#6c757d",
+                    color: "#292D32",
                     display: "flex",
                     justifyContent: "space-between",
                     marginTop: "8px",
@@ -155,6 +175,7 @@ const ProductDetailsPage = () => {
                   <span>|</span>
                   <span>Automatic</span>
                 </div>
+
                 <div
                   style={{
                     display: "flex",
@@ -164,7 +185,7 @@ const ProductDetailsPage = () => {
                   }}
                 >
                   <img
-                    src="https://via.placeholder.com/50"
+                  src={require("../images/person1.jpg")}
                     alt="Profile"
                     style={{
                       width: "50px",
@@ -183,18 +204,37 @@ const ProductDetailsPage = () => {
                     Arjun AR
                   </span>
                 </div>
+
+                
                 <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    marginBottom: "16px",
-                  }}
-                >
-                  <div style={{ fontSize: "14px", color: "#6c757d" }}>
-                    <p style={{ marginBottom: "4px" }}>Owner</p>
-                    <span style={{ fontWeight: "bold" }}>2nd</span>
-                  </div>
+  style={{
+    display: "flex",
+    alignItems: "flex-start", 
+    justifyContent: "space-between",
+    marginBottom: "16px",
+    gap: "8px", // Adjust gap between icon and text
+  }}
+>
+  {/* Icon added on the left */}
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      gap: "8px", // Space between the icon and text
+    }}
+  >
+     <i className="fa-solid fa-person" style={{ fontSize: "24px", color: "#6c757d" }}></i>
+    {/* Text container */}
+  <div style={{ fontSize: "14px", color: "#6c757d", display: "flex", flexDirection: "column" }}>
+    <p style={{ marginBottom: "0" }}>Owner</p>
+    <span style={{ fontWeight: "bold" }}>2nd</span>
+  </div>
+  </div>
+
+
+
+
+
                   <div
                     style={{
                       fontSize: "14px",
@@ -206,18 +246,36 @@ const ProductDetailsPage = () => {
                   >
                     <i
                       className="fa-solid fa-location-dot"
-                      style={{ color: "#005B96", fontSize: "16px" }}
+                      style={{ color: "#6c757d", fontSize: "24px" }}
                     ></i>
                     <div>
                       <p style={{ marginBottom: "4px" }}>Location</p>
                       <span style={{ fontWeight: "bold" }}>Kochi</span>
                     </div>
                   </div>
+
+                  <div
+                    style={{
+                      fontSize: "14px",
+                      color: "#6c757d",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "4px",
+                    }}
+                  >
+                    <i
+                      className="fa-solid fa-calendar-days"
+                      style={{ color: "#6c757d", fontSize: "20px" }}
+                    ></i>
                   <div style={{ fontSize: "14px", color: "#6c757d" }}>
                     <p style={{ marginBottom: "4px" }}>Posted On</p>
                     <span style={{ fontWeight: "bold" }}>20-Sep-2024</span>
                   </div>
+                  </div>
+
                 </div>
+               
+
                 {/* Updated Buttons */}
                 <div
                   className="d-flex justify-content-between align-items-center mt-4"
