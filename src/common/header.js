@@ -26,6 +26,11 @@ export default function Header() {
     navigate("/sell");
   };
 
+  const handleWishlistClick = () => {
+    navigate("/wishlist");
+  };
+
+
   return (
     <>
       <Navbar
@@ -104,7 +109,7 @@ export default function Header() {
             <Nav.Link href="#chat" className="text-white mx-2">
               <FaCommentDots size={20} />
             </Nav.Link>
-            <Nav.Link href="#wishlist" className="text-white mx-2">
+            <Nav.Link className="text-white mx-2" onClick={handleWishlistClick}>
               <FaHeart size={20} />
             </Nav.Link>
             <Nav.Link href="#notifications" className="text-white mx-2">

@@ -132,6 +132,9 @@ const WishlistPage = () => (
       </Row>
     </Container>
 
+    {/* Add some space above the footer */}
+    <div style={{ paddingBottom: "60px" }} />
+
     {/* Include Footer */}
     <Footer />
   </>
