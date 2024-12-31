@@ -177,7 +177,7 @@ const ListingPage = () => {
 
     // Function to handle navigation to details page
   const handleCardClick = (carId) => {
-      navigate(`/details/${carId}`, { state: { carId } }); // Navigate to details page with carId
+      navigate(`/details/1`, { state: { carId } }); // Navigate to details page with carId
     };
 
   return (
