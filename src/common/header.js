@@ -30,6 +30,10 @@ export default function Header() {
     navigate("/wishlist");
   };
 
+  const handleAdsClick = () => {
+    navigate("/ads");
+  };
+
 
   return (
     <>
@@ -112,7 +116,7 @@ export default function Header() {
             <Nav.Link className="text-white mx-2" onClick={handleWishlistClick}>
               <FaHeart size={20} />
             </Nav.Link>
-            <Nav.Link href="#notifications" className="text-white mx-2">
+            <Nav.Link className="text-white mx-2"  onClick={handleAdsClick}>
               <FaBell size={20} />
             </Nav.Link>
 

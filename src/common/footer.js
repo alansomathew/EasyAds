@@ -7,8 +7,9 @@ const Footer = () => {
         <div className="row d-flex justify-content-between">
           {/* Left Section: Logo and Social Links */}
           <div className="col-lg-3 col-md-6 text-start">
-            <h3 style={{ fontSize: "24px", fontWeight: "bold" }}>EazyAds</h3>
-            <p className="mt-3">FOLLOW US</p>
+            <h3 style={{ fontSize: "32px",fontFamily: "Georgia, serif",
+              fontStyle: "italic", }}>EazyAds</h3>
+            <p className="mt-4">FOLLOW US</p>
             <div className="d-flex">
               <a
                 href="https://twitter.com"

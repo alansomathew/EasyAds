@@ -4,6 +4,8 @@ import Header from '../common/header'; // Ensure this path is correct
 import Footer from '../common/footer'; // Ensure this path is correct
 import CarCard from '../components/card'; // Import the CarCard component
 import CustomNavbar from "../components/navbar"; // Import the navbar component
+import { FaHeart } from 'react-icons/fa';
+
 
 
 // Car data
@@ -125,7 +127,9 @@ const WishlistPage = () => (
               distance={car.distance}
               owners={car.owners}
               date={car.date}
+              wishlistIcon={<FaHeart style={{ color: 'white' }} />}
               onClick={() => console.log(`${car.title} clicked`)}
+             
             />
           </Col>
         ))}

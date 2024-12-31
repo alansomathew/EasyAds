@@ -7,6 +7,7 @@ import {
   Dropdown,
   Form,
   Badge,
+  Carousel ,
   Breadcrumb,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -168,57 +169,7 @@ const ListingPage = () => {
       owners: "2",
       date: "Yesterday",
     },
-    {
-      id: 7,
-      images: [
-        require("../images/car/car1.jpeg"),
-        require("../images/car/car2.jpeg"),
-        require("../images/car/car3.jpeg"),
-        require("../images/car/car4.jpeg"),
-        require("../images/car/car5.jpeg"),
-      ],
-      price: "7,20,000",
-      title: "Tata Tiago",
-      location: "Mundamveli",
-      year: "2016",
-      distance: "48,700",
-      owners: "2",
-      date: "Yesterday",
-    },
-    {
-      id: 8,
-      images: [
-        require("../images/car/car6.jpeg"),
-        "https://via.placeholder.com/300x200?text=Car+B",
-        "https://via.placeholder.com/300x200?text=Car+C",
-        "https://via.placeholder.com/300x200?text=Car+B",
-        "https://via.placeholder.com/300x200?text=Car+C",
-      ],
-      price: "7,20,000",
-      title: "Tata Tiago",
-      location: "Mundamveli",
-      year: "2016",
-      distance: "48,700",
-      owners: "2",
-      date: "Yesterday",
-    },
-    {
-      id: 9,
-      images: [
-        require("../images/car/car7.jpeg"),
-        "https://via.placeholder.com/300x200?text=Car+B",
-        "https://via.placeholder.com/300x200?text=Car+C",
-        "https://via.placeholder.com/300x200?text=Car+B",
-        "https://via.placeholder.com/300x200?text=Car+C",
-      ],
-      price: "7,20,000",
-      title: "Tata Tiago",
-      location: "Mundamveli",
-      year: "2016",
-      distance: "48,700",
-      owners: "2",
-      date: "Yesterday",
-    },
+   
   
    
    
@@ -943,6 +894,7 @@ const ListingPage = () => {
 </Col>
 
         </Row>
+
       </Container>
        {/* Add space above the footer */}
        <div style={{ marginBottom: "50px" }}></div>
