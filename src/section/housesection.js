@@ -1,6 +1,7 @@
 import React from "react";
 import HouseCard from "../components/housecard"; // Import HouseCard component
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import SectionHeader from "../common/sectionheader";
 
 
 const HousesSection = () => {
@@ -64,31 +65,7 @@ const HousesSection = () => {
   return (
     <div className="container mt-5" style={{ maxWidth: "1312px" }}>
       {/* Section Header */}
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <h3 className="fw-bold " style={{ textAlign: "left", color: "#005B96",}}>
-          Houses and Flats for Sale
-        </h3>
-        <a
-  href="#see-all"
-  className="text-primary"
-  style={{
-    fontSize: "16px",
-    fontFamily: "Poppins", // Correct the font style
-    textDecoration: "none",
-    fontWeight: "bold", // Make the text bold
-    display: "inline-block", // Ensure border and width apply correctly
-    padding: "4px 8px", // Optional: Add padding for spacing
-    transform: "rotate(0deg)", // Apply rotation
-    color: "#005B96", // Text color
-  }}
-  onClick={handleSeeAll}
->
-  See All  <i className="fa-solid fa-arrow-right" style={{ marginLeft: "8px" }}></i>
-</a>
-
-
-
-      </div>
+     <SectionHeader title="Houses and Flats for Sale"  onSeeAll={handleSeeAll} />
 
       {/* Responsive Grid Layout */}
       <div

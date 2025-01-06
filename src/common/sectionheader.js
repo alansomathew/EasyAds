@@ -15,7 +15,7 @@ const SectionHeader = ({ title, onSeeAll }) => {
   onClick={onSeeAll}
   style={{
     fontSize: "16px",
-    fontFamily: "Poppins", // Correct the font style
+    
     textDecoration: "none",
     fontWeight: "bold", // Make the text bold
     display: "inline-block", // Ensure border and width apply correctly
