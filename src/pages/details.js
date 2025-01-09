@@ -152,8 +152,9 @@ const ProductDetailsPage = () => {
                 <h3
                   style={{
                     color: "#005B96",
-                    fontSize: "28px",
+                    fontSize: "48px",
                     fontWeight: "bold",
+                    textAlign: "left",
                   }}
                 >
                   ₹ 25,90,000
