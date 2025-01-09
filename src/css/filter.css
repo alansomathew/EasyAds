@@ -21,30 +21,53 @@
     font-weight: bold;
     color: #005b96;
     margin-bottom: 8px;
-  }
+  } 
+
+
+
+/* Track before the first thumb */
+.track-0 {
+  background: #d9d9d9; /* Grey color */
+}
+
+/* Track between the thumbs */
+.track-1 {
+  background: #005B96; /* Blue color */
+}
+
+/* Track after the second thumb */
+.track-2 {
+  background: #d9d9d9; /* Grey color */
+}
+
+.horizontal-slider {
+  width: 100%;
+  height: 6px;
+  background: #e0e0e0; /* Grey background for slider */
+  border-radius: 4px;
+  position: relative;
+  margin-top: 10px;
+}
+
+.track {
+ 
+  height: 6px;
+  border-radius: 4px;
+}
+
+.thumb {
+  height: 20px;
+  width: 20px;
+  background-color: #005b96; /* Blue thumb color */
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  top: -7px; /* Center the thumb on the slider */
+}
+
+ 
   
-  .horizontal-slider {
-    width: 100%;
-    height: 8px;
-    background: #ddd;
-    border-radius: 5px;
-    position: relative;
-  }
-  
-  .track {
-    background: #005b96;
-    height: 100%;
-  }
-  
-  .thumb {
-    height: 20px;
-    width: 20px;
-    background: #005b96;
-    border-radius: 50%;
-    cursor: pointer;
-    position: relative;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  }
   
   .thumb-label {
     position: absolute;
@@ -79,5 +102,10 @@
   .budget-filter-buttons .btn-primary {
     background-color: #005b96;
     border-color: #005b96;
+  }
+  .custom-modal-content {
+    border-radius: 16px;
+    background-color: #F9FAF7; /* Light background */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
   }
   

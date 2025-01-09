@@ -1,15 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import SectionHeader from "../common/sectionheader"; // Reuse SectionHeader
 import CarCard from "../components/card"; // Reuse CarCard for displaying cars
 
-
-
 const CarSection = () => {
   const navigate = useNavigate(); // Initialize navigation
 
-  // Mock data for cars
-  const carData = [
+  // State for car data
+  const [carData, setCarData] = useState([
     {
       id: 1,
       images: [
@@ -26,6 +24,7 @@ const CarSection = () => {
       distance: "48,700",
       owners: "2",
       date: "Yesterday",
+      isLiked: false,
     },
     {
       id: 2,
@@ -43,6 +42,7 @@ const CarSection = () => {
       distance: "48,700",
       owners: "2",
       date: "Yesterday",
+      isLiked: false,
     },
     {
       id: 3,
@@ -60,9 +60,10 @@ const CarSection = () => {
       distance: "48,700",
       owners: "2",
       date: "Yesterday",
+      isLiked: false,
     },
     {
-      id: 3,
+      id: 4,
       images: [
         require("../images/car/car8.jpeg"),
         "https://via.placeholder.com/300x200?text=Car+B",
@@ -77,13 +78,22 @@ const CarSection = () => {
       distance: "48,700",
       owners: "2",
       date: "Yesterday",
+      isLiked: false,
     },
-   
-   
-  ];
+  ]);
 
+  // Handle card click to navigate to details page
   const handleCarClick = (id) => {
-    navigate(`/details/${id}`); // Navigate to the details page with the car ID
+    navigate(`/details/${id}`);
+  };
+
+  // Handle like toggle
+  const handleToggleLike = (id, isLiked) => {
+    setCarData((prevData) =>
+      prevData.map((car) =>
+        car.id === id ? { ...car, isLiked } : car
+      )
+    );
   };
 
   return (
@@ -106,6 +116,7 @@ const CarSection = () => {
             key={car.id}
             {...car}
             onClick={() => handleCarClick(car.id)} // Pass the click handler to the card
+            onToggleLike={(isLiked) => handleToggleLike(car.id, isLiked)} // Handle toggle like
           />
         ))}
       </div>

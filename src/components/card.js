@@ -1,58 +1,80 @@
-  import React, { useState } from "react";
-  import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-  import { FaHeart, FaRegHeart } from "react-icons/fa"; // Import like icons
+import React, { useState } from "react";
+import { Modal, Button } from "react-bootstrap"; // Import Modal and Button components from react-bootstrap
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaHeart, FaRegHeart } from "react-icons/fa"; // Import like icons
 
-  const CarCard = ({
-    images,
-    price,
-    title,
-    location,
-    year,
-    distance,
-    owners,
-    date,
-    onClick
-  }) => {
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [isHovered, setIsHovered] = useState(false);
-    const [liked, setLiked] = useState(false); // State for like button
+const CarCard = ({
+  images,
+  price,
+  title,
+  location,
+  year,
+  distance,
+  owners,
+  date,
+  isLiked, // Accept isLiked as a prop
+  onToggleLike, // Accept onToggleLike as a prop
+  onClick, // Navigate to details page on card click
+}) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [liked, setLiked] = useState(isLiked); // Set the initial state to isLiked
+  const [showModal, setShowModal] = useState(false); // State to control the modal
 
-    // Handle navigation for the previous image
-    const handlePrev = () => {
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === 0 ? images.length - 1 : prevIndex - 1
-      );
-    };
+  // Handle navigation for the previous image
+  const handlePrev = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
 
-    // Handle navigation for the next image
-    const handleNext = () => {
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
-      );
-    };
+  // Handle navigation for the next image
+  const handleNext = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
 
-    // Toggle Like Button
-    const toggleLike = (e) => {
-      e.stopPropagation(); // Prevent click propagation
-      setLiked(!liked);
-    };
+  // Toggle Like Button
+  const toggleLike = (e) => {
+    e.stopPropagation(); // Prevent click propagation
+    if (liked) {
+      setShowModal(true); // Show the confirmation modal when unliking
+    } else {
+      setLiked(!liked); // Toggle like directly
+      if (onToggleLike) {
+        onToggleLike(!liked); // Notify parent of the new liked state
+      }
+    }
+  };
 
+  // Handle modal actions
+  const handleConfirm = () => {
+    setLiked(false); // Remove like
+    if (onToggleLike) {
+      onToggleLike(false); // Notify parent of the removal
+    }
+    setShowModal(false); // Hide modal
+  };
 
-    return (
+  const handleCancel = () => {
+    setShowModal(false); // Hide modal without removing like
+  };
+
+  return (
+    <>
       <div
         className="card shadow-sm"
-      // Handle click to navigate
         style={{
           width: "300px",
-          border: "none", // Remove border
-          boxShadow: "none", // Remove shadow
-          borderRadius: "16px", // Removed rounded corners
+          border: "none",
+          boxShadow: "none",
+          borderRadius: "16px",
           overflow: "hidden",
-          backgroundColor: "transparent", // Transparent background
-          fontFamily: "'Poppins", 
-          
-        
+          backgroundColor: "transparent",
+          fontFamily: "'Poppins'",
         }}
+        onClick={onClick}
       >
         {/* Image Carousel */}
         <div
@@ -80,17 +102,16 @@
               position: "absolute",
               top: "4px",
               right: "10px",
-              
               padding: "10px",
               cursor: "pointer",
               boxShadow: "0px 8px 9px rgba(0, 0, 0, 0.1)",
-              zIndex: 10,
+              zIndex: 9,
             }}
           >
             {liked ? (
               <FaHeart style={{ color: "white", fontSize: "18px" }} />
             ) : (
-              <FaRegHeart style={{ color: "#FFFFFF  ", fontSize: "18px" }} />
+              <FaRegHeart style={{ color: "#FFFFFF", fontSize: "18px" }} />
             )}
           </div>
 
@@ -105,7 +126,7 @@
                   left: "10px",
                   transform: "translateY(-50%)",
                   borderRadius: "50%",
-                  backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
                   color: "white",
                   border: "none",
                   width: "40px",
@@ -128,7 +149,7 @@
                   right: "10px",
                   transform: "translateY(-50%)",
                   borderRadius: "50%",
-                  backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
                   color: "white",
                   border: "none",
                   width: "40px",
@@ -165,7 +186,7 @@
                   height: "8px",
                   borderRadius: "50%",
                   backgroundColor:
-                    currentImageIndex === index ? "#ffffff" : "#bdbdbd", // Active dot color
+                    currentImageIndex === index ? "#ffffff" : "#bdbdbd",
                   cursor: "pointer",
                   transition: "background-color 0.3s ease",
                   boxShadow:
@@ -211,7 +232,93 @@
           </div>
         </div>
       </div>
-    );
-  };
 
-  export default CarCard;
+
+
+      <Modal
+  show={showModal}
+  onHide={handleCancel}
+  centered // Ensures modal is vertically and horizontally centered
+  dialogClassName="custom-modal-dialog" // Custom class for additional styling
+  contentClassName="custom-modal-content"
+>
+  <Modal.Header
+    closeButton
+    style={{
+      borderBottom: "1px solid #E9ECEF",
+      padding: "20px",
+      borderRadius: "16px 16px 0 0",
+    }}
+  >
+    <Modal.Title
+      style={{
+        fontWeight: "bold",
+        fontSize: "18px",
+        color: "#292D32",
+        textAlign: "center",
+        width: "100%",
+        margin: "0",
+      }}
+    >
+      Delete this wishlist?
+    </Modal.Title>
+  </Modal.Header>
+  <Modal.Body
+    style={{
+      color: "#292D32",
+      fontSize: "14px",
+      lineHeight: "1.5",
+      textAlign: "left",
+      padding: "20px",
+      
+    }}
+  >
+    This item will be removed permanently.
+  </Modal.Body>
+  <Modal.Footer
+  style={{
+    borderTop: "none",
+    display: "flex",
+    justifyContent: "flex-end", // Align buttons to the right
+    gap: "4px", // Space between the buttons
+    padding: "16px 20px",
+    borderRadius: "0 0 16px 16px",
+    backgroundColor: "#F9FAFB",
+  }}
+>
+  <Button
+    variant="outline-primary"
+    style={{
+      borderColor: "#0D6EFD",
+      color: "#0D6EFD",
+      padding: "8px 16px",
+      fontSize: "14px",
+      borderRadius: "8px",
+      fontWeight: "bold",
+    }}
+    onClick={handleCancel}
+  >
+    Cancel
+  </Button>
+  <Button
+    variant="primary"
+    style={{
+      backgroundColor: "#0D6EFD",
+      border: "none",
+      padding: "8px 19px",
+      fontSize: "14px",
+      borderRadius: "8px",
+      fontWeight: "bold",
+    }}
+    onClick={handleConfirm}
+  >
+    Confirm
+  </Button>
+</Modal.Footer>
+</Modal>
+
+    </>
+  );
+};
+
+export default CarCard;

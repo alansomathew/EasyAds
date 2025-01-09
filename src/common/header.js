@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Navbar, Form, InputGroup, Nav, Container, Button } from "react-bootstrap";
+import {
+  Navbar,
+  Form,
+  InputGroup,
+  Nav,
+  Container,
+  Button,
+} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FaSearch, FaCommentDots, FaHeart, FaBell } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -34,15 +41,18 @@ export default function Header() {
     navigate("/ads");
   };
 
-
   return (
     <>
       <Navbar
         expand="lg"
-        style={{ backgroundColor: "#005B96", height: "auto", padding: "10px 0" }}
+        style={{
+          backgroundColor: "#005B96",
+          height: "auto",
+          padding: "10px 20px",
+        }}
         variant="dark"
       >
-        <Container className="d-flex flex-column flex-lg-row align-items-center">
+        <Container className="d-flex justify-content-between align-items-center">
           {/* Logo */}
           <Navbar.Brand
             href="/"
@@ -51,55 +61,65 @@ export default function Header() {
               fontFamily: "Georgia, serif",
               fontStyle: "italic",
               fontSize: "2rem",
+              marginRight: "20px",
             }}
           >
             EazyAds
           </Navbar.Brand>
 
           {/* Centered Search Bar */}
-          <Form className="d-flex justify-content-center flex-grow-1 my-3 my-lg-0">
+          <Form className="d-flex flex-grow-1 justify-content-center mx-3">
             <InputGroup
               style={{
-                borderRadius: "30px",
+                borderRadius: "50px", // Fully rounded corners
                 overflow: "hidden",
                 boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-                backgroundColor: "#F9FAF7",
-                height: "50px",
-                maxWidth: "600px",
+                backgroundColor: "#F9FAF7", // Light background
+                height: "50px", // Adjusted height
+                maxWidth: "600px", // Width for centered look
                 width: "100%",
               }}
             >
+              {/* Left Input */}
               <Form.Control
                 type="text"
                 placeholder="Search location"
                 style={{
                   border: "none",
                   backgroundColor: "#F9FAF7",
-                  padding: "10px 15px",
+                  padding: "0 20px",
+                  fontSize: "1rem",
+                  color: "#707070", // Light gray font color
                 }}
               />
+              {/* Divider */}
               <div
                 style={{
                   width: "1px",
-                  backgroundColor: "#E0E0E0",
+                  backgroundColor: "#E0E0E0", // Divider color
                 }}
               ></div>
+              {/* Right Input */}
               <Form.Control
                 type="text"
                 placeholder="Search Cars, Bikes and more"
                 style={{
                   border: "none",
                   backgroundColor: "#F9FAF7",
-                  padding: "10px 15px",
+                  padding: "0 20px",
+                  fontSize: "1rem",
+                  color: "#707070", // Light gray font color
                 }}
               />
+              {/* Search Button */}
               <Button
                 style={{
-                  backgroundColor: "#FFD700",
+                  backgroundColor: "#FFD700", // Yellow color
                   border: "none",
-                  borderRadius: "50%",
-                  width: "40px",
+                  borderRadius: "50%", // Fully rounded
+                  width: "40px", // Circle button size
                   height: "40px",
+                  margin: "5px", // Small margin for spacing
                 }}
                 onClick={handleSearchClick}
               >
@@ -109,14 +129,14 @@ export default function Header() {
           </Form>
 
           {/* Right Section */}
-          <Nav className="ms-auto d-flex align-items-center">
+          <Nav className="d-flex align-items-center">
             <Nav.Link href="#chat" className="text-white mx-2">
               <FaCommentDots size={20} />
             </Nav.Link>
             <Nav.Link className="text-white mx-2" onClick={handleWishlistClick}>
               <FaHeart size={20} />
             </Nav.Link>
-            <Nav.Link className="text-white mx-2"  onClick={handleAdsClick}>
+            <Nav.Link className="text-white mx-2" onClick={handleAdsClick}>
               <FaBell size={20} />
             </Nav.Link>
 
@@ -149,16 +169,16 @@ export default function Header() {
                   variant="outline-light"
                   style={{
                     fontWeight: "bold",
-                    width: "86px", // Hug width
-                    height: "48px", // Fixed height
-                    border: "4px solid white", // Thick white border
+                    width: "86px",
+                    height: "48px",
+                    border: "2px solid white", // White border
                     borderRadius: "15px",
-                    padding: "8px 14px", // Adjusted padding
+                    padding: "8px 14px",
                     color: "white",
                     backgroundColor: "transparent",
-                    marginRight: "10px", // Add gap to the right
+                    marginRight: "10px",
                   }}
-                  onClick={handleLoginClick} // Open login modal on click
+                  onClick={handleLoginClick}
                 >
                   Login
                 </Button>
@@ -167,11 +187,10 @@ export default function Header() {
                     backgroundColor: "#FFD700", // Yellow background
                     border: "none",
                     fontWeight: "bold",
-                    borderRadius: "16px", // Rounded corners
-                    width: "101px", // Fixed width
-                    height: "48px", // Fixed height
-                    padding: "12px 24px", // Padding: Top/Bottom: 12px, Left/Right: 24px
-                    gap: "4px", // Gap for internal spacing if needed
+                    borderRadius: "16px",
+                    width: "101px",
+                    height: "48px",
+                    padding: "12px 24px",
                   }}
                   onClick={handleSellClick}
                 >

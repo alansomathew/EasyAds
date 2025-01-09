@@ -1,9 +1,19 @@
 import React, { useState } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight, FaHeart, FaRegHeart } from "react-icons/fa";
 
-const HouseCard = ({ images, price, title, location, description, date }) => {
+const HouseCard = ({
+  images,
+  price,
+  title,
+  location,
+  description,
+  date,
+  isLiked: initialIsLiked = false, // Accept initial liked state
+  onToggleLike, // Function to handle like toggle
+}) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [liked, setLiked] = useState(initialIsLiked); // Local state for liked status
 
   // Handle navigation for the previous image
   const handlePrev = () => {
@@ -19,6 +29,16 @@ const HouseCard = ({ images, price, title, location, description, date }) => {
     );
   };
 
+  // Toggle Like Button
+  const toggleLike = (e) => {
+    e.stopPropagation(); // Prevent click propagation
+    const newLikedState = !liked;
+    setLiked(newLikedState);
+    if (onToggleLike) {
+      onToggleLike(newLikedState); // Notify parent of the new liked state
+    }
+  };
+
   return (
     <div
       className="card shadow-sm"
@@ -29,7 +49,6 @@ const HouseCard = ({ images, price, title, location, description, date }) => {
         backgroundColor: "#FFFFFF",
         border: "none", // Remove border
         boxShadow: "none", // Remove shadow
-      
       }}
     >
       {/* Image Carousel */}
@@ -50,6 +69,28 @@ const HouseCard = ({ images, price, title, location, description, date }) => {
             objectFit: "cover",
           }}
         />
+
+        {/* Like Button */}
+        <div
+          onClick={toggleLike}
+          style={{
+            position: "absolute",
+            top: "10px",
+            right: "10px",
+            padding: "8px",
+            cursor: "pointer",
+            zIndex: 10,
+            
+            borderRadius: "50%",
+          }}
+        >
+          {liked ? (
+            <FaHeart style={{ color: "white", fontSize: "18px" }} />
+          ) : (
+            <FaRegHeart style={{ color: "white", fontSize: "18px" }} />
+          )}
+        </div>
+
         {isHovered && images.length > 1 && (
           <>
             {/* Left Arrow */}

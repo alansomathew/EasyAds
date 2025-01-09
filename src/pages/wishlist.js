@@ -1,15 +1,12 @@
-import React from 'react';
-import { Container, Row, Col, Breadcrumb, Navbar } from 'react-bootstrap';
-import Header from '../common/header'; // Ensure this path is correct
-import Footer from '../common/footer'; // Ensure this path is correct
-import CarCard from '../components/card'; // Import the CarCard component
+import React, { useState } from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import Header from "../common/header"; // Ensure this path is correct
+import Footer from "../common/footer"; // Ensure this path is correct
+import CarCard from "../components/card"; // Import the CarCard component
 import CustomNavbar from "../components/navbar"; // Import the navbar component
-import { FaHeart } from 'react-icons/fa';
+import { FaHeart } from "react-icons/fa";
 
-
-
-// Car data
-const cars = [
+const initialCars = [
   {
     id: 1,
     images: [
@@ -26,6 +23,7 @@ const cars = [
     distance: "48,700",
     owners: "2",
     date: "Yesterday",
+    isLiked: true, // Marked as liked
   },
   {
     id: 2,
@@ -43,6 +41,7 @@ const cars = [
     distance: "48,700",
     owners: "2",
     date: "Yesterday",
+    isLiked: true, // Marked as liked
   },
   {
     id: 3,
@@ -60,6 +59,7 @@ const cars = [
     distance: "48,700",
     owners: "2",
     date: "Yesterday",
+    isLiked: true, // Marked as liked
   },
   {
     id: 4,
@@ -77,71 +77,94 @@ const cars = [
     distance: "48,700",
     owners: "2",
     date: "Yesterday",
+    isLiked: true, // Marked as liked
   },
 ];
 
-const WishlistPage = () => (
-  <>
-    {/* Include Header */}
-    <Header />
+const WishlistPage = () => {
+  const [cars, setCars] = useState(initialCars); // Manage cars as state
 
-    {/* Include Navbar */}
-    <CustomNavbar />
+  const handleToggleLike = (id) => {
+    // Remove car from the wishlist when toggled off
+    setCars((prevCars) => prevCars.filter((car) => car.id !== id));
+  };
 
-    {/* Breadcrumb */}
-    <div style={{ padding: "10px 0" }}>
-      <Container>
-        <nav
-          style={{
-            display: "flex",
-            alignItems: "center",
-            fontSize: "14px",
-            color: "#6c757d",
-          }}
-        >
-          <span style={{ cursor: "pointer", color: "#292D32" }}>Home</span>
-          <span style={{ margin: "0 8px" }}> &gt; </span>
-          <span style={{ cursor: "pointer", color: "#292D32" }}>Wishlist</span>
-          <span style={{ margin: "0 8px" }}> &gt; </span>
-          
-        </nav>
-      </Container>
-    </div>
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh", // Ensure the layout fills the full height of the viewport
+      }}
+    >
+      {/* Include Header */}
+      <Header />
 
-    {/* Wishlist Page Content */}
-    <Container>
-      <Row className="my-4">
-        <Col>
-        <h2 style={{ textAlign: 'left', color: '#005B96' ,fontFamily: 'Poppins', fontWeight: 'bold',}}>Wishlist</h2>
-        </Col>
-      </Row>
-      <Row>
-        {cars.map((car) => (
-          <Col key={car.id} md={3}>
-            <CarCard
-              images={car.images}
-              price={car.price}
-              title={car.title}
-              location={car.location}
-              year={car.year}
-              distance={car.distance}
-              owners={car.owners}
-              date={car.date}
-              wishlistIcon={<FaHeart style={{ color: 'white' }} />}
-              onClick={() => console.log(`${car.title} clicked`)}
-             
-            />
+      {/* Include Navbar */}
+      <CustomNavbar />
+
+      {/* Breadcrumb */}
+      <div style={{ padding: "10px 0", flexGrow: 1 }}>
+        <Container>
+          <nav
+            style={{
+              display: "flex",
+              alignItems: "center",
+              fontSize: "14px",
+              color: "#6c757d",
+            }}
+          >
+            <span style={{ cursor: "pointer", color: "#292D32" }}>Home</span>
+            <span style={{ margin: "0 8px" }}> &gt; </span>
+            <span style={{ cursor: "pointer", color: "#292D32" }}>
+              Wishlist
+            </span>
+          </nav>
+        </Container>
+      </div>
+
+      {/* Wishlist Page Content */}
+      <Container style={{ flexGrow: 1 }}>
+        <Row className="my-4">
+          <Col>
+            <h2
+              style={{
+                textAlign: "left",
+                color: "#005B96",
+                fontFamily: "Poppins",
+                fontWeight: "bold",
+              }}
+            >
+              Wishlist
+            </h2>
           </Col>
-        ))}
-      </Row>
-    </Container>
+        </Row>
+        <Row>
+          {cars.map((car) => (
+            <Col key={car.id} md={3}>
+              <CarCard
+                images={car.images}
+                price={car.price}
+                title={car.title}
+                location={car.location}
+                year={car.year}
+                distance={car.distance}
+                owners={car.owners}
+                date={car.date}
+                isLiked={car.isLiked} // Pass `isLiked` to CarCard
+                wishlistIcon={<FaHeart style={{ color: "white" }} />}
+                onClick={() => console.log(`${car.title} clicked`)}
+                onToggleLike={() => handleToggleLike(car.id)} // Pass the toggle like handler
+              />
+            </Col>
+          ))}
+        </Row>
+      </Container>
 
-    {/* Add some space above the footer */}
-    <div style={{ paddingBottom: "60px" }} />
-
-    {/* Include Footer */}
-    <Footer />
-  </>
-);
+      {/* Include Footer */}
+      <Footer style={{ marginTop: "auto" }} />
+    </div>
+  );
+};
 
 export default WishlistPage;

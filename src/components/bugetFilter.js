@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import ReactSlider from "react-slider"; // Import react-slider
-import '../css/filter.css'; // Adjust the path based on your folder structure
-
+import ReactSlider from "react-slider";
+import "../css/filter.css"; // Ensure this file contains the updated CSS
 
 const BudgetFilter = ({ toggleFilter, filters }) => {
   const [range, setRange] = useState([400000, 800000]); // Two values: From and To
 
   const handleSliderChange = (newRange) => {
-    setRange(newRange); // Update the range values dynamically
+    setRange(newRange);
   };
 
   const resetRange = () => {
-    setRange([100000, 800000]); // Reset to default values
+    setRange([100000, 800000]);
   };
 
   const applyFilter = () => {
@@ -23,15 +22,23 @@ const BudgetFilter = ({ toggleFilter, filters }) => {
   return (
     <div
       className="border p-3 mb-3"
-      style={{ borderRadius: "8px", backgroundColor: "#FFFFFF" }}
+      style={{
+        borderRadius: "8px",
+        backgroundColor: "#FFFFFF",
+        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+      }}
     >
       <div
         className="d-flex justify-content-between align-items-center"
         onClick={() => toggleFilter("budget")}
         style={{ cursor: "pointer" }}
       >
-        <span className="fw-bold">BUDGET</span>
-        <span>{filters.budget ? "▲" : "▼"}</span>
+        <span className="fw-bold" style={{ fontSize: "16px" }}>
+          BUDGET
+        </span>
+        <span style={{ fontSize: "16px", color: "#292D32" }}>
+          {filters.budget ? "▲" : "▼"}
+        </span>
       </div>
       {filters.budget && (
         <div className="mt-3">
@@ -89,7 +96,20 @@ const BudgetFilter = ({ toggleFilter, filters }) => {
             onChange={handleSliderChange}
             renderThumb={(props, state) => (
               <div {...props} className="thumb">
-                {state.valueNow.toLocaleString()}
+                <span
+                  style={{
+                    position: "absolute",
+                    bottom: "-35px", // Center the text below the thumb
+                    fontSize: "12px",
+                    backgroundColor: "#005B96",
+                    color: "#FFFFFF",
+                    borderRadius: "4px",
+                    padding: "2px 6px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {state.index === 0 ? "From" : "To"}
+                </span>
               </div>
             )}
             style={{
@@ -98,7 +118,7 @@ const BudgetFilter = ({ toggleFilter, filters }) => {
           />
 
           {/* Reset and Apply Buttons */}
-          <div className="d-flex justify-content-between mt-3">
+          <div className="d-flex justify-content-end mt-5 gap-2">
             <Button
               variant="outline-primary"
               onClick={resetRange}
@@ -106,6 +126,9 @@ const BudgetFilter = ({ toggleFilter, filters }) => {
                 fontSize: "14px",
                 fontWeight: "bold",
                 borderRadius: "24px",
+                padding: "8px 24px",
+                color: "#005B96",
+                border: "2px solid #005B96",
               }}
             >
               Reset
@@ -119,6 +142,7 @@ const BudgetFilter = ({ toggleFilter, filters }) => {
                 backgroundColor: "#005B96",
                 borderColor: "#005B96",
                 borderRadius: "24px",
+                padding: "8px 24px",
               }}
             >
               Apply

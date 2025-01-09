@@ -870,10 +870,10 @@ const ListingPage = () => {
           {/* Car Listings Section */}
           <Col md={12}>
           
-          <Row>
+          <Row >
             
           {carData.map((car) => (
-  <Col md={4} key={car.id}>
+  <Col md={4} key={car.id} className="mt-3">
     <CarCard
       images={car.images}
       price={car.price}

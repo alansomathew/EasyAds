@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import HouseCard from "../components/housecard"; // Import HouseCard component
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import SectionHeader from "../common/sectionheader";
 
-
 const HousesSection = () => {
-  // Mock data for houses
-  const houseData = [
+  // State for house data with initial data
+  const [houseData, setHouseData] = useState([
     {
       id: 1,
       images: [
@@ -18,6 +17,7 @@ const HousesSection = () => {
       location: "Coimbatore",
       description: "Parking available, Balcony, Full furnished, 24hrs hot...",
       date: "Yesterday",
+      isLiked: false, // Initial liked state
     },
     {
       id: 2,
@@ -30,6 +30,7 @@ const HousesSection = () => {
       location: "Chennai",
       description: "Swimming pool, Gym, Fully Furnished, 24hrs electricity...",
       date: "Today",
+      isLiked: false, // Initial liked state
     },
     {
       id: 3,
@@ -42,6 +43,7 @@ const HousesSection = () => {
       location: "Bangalore",
       description: "Modular kitchen, Balcony, Near Metro, 24hrs security...",
       date: "2 days ago",
+      isLiked: false, // Initial liked state
     },
     {
       id: 4,
@@ -55,17 +57,28 @@ const HousesSection = () => {
       location: "Hyderabad",
       description: "Garden, Parking available, Independent house...",
       date: "Yesterday",
+      isLiked: false, // Initial liked state
     },
-  ];
+  ]);
 
+  // Handle "See All" click
   const handleSeeAll = () => {
     console.log("See All Houses clicked");
+  };
+
+  // Handle like toggle
+  const handleToggleLike = (id, isLiked) => {
+    setHouseData((prevData) =>
+      prevData.map((house) =>
+        house.id === id ? { ...house, isLiked } : house
+      )
+    );
   };
 
   return (
     <div className="container mt-5" style={{ maxWidth: "1312px" }}>
       {/* Section Header */}
-     <SectionHeader title="Houses and Flats for Sale"  onSeeAll={handleSeeAll} />
+      <SectionHeader title="Houses and Flats for Sale" onSeeAll={handleSeeAll} />
 
       {/* Responsive Grid Layout */}
       <div
@@ -78,12 +91,14 @@ const HousesSection = () => {
         {houseData.map((house) => (
           <HouseCard
             key={house.id}
-            images={house.images} // Use house images
-            price={house.price} // House price
-            title={house.title} // Title representing details like BHK and area
-            location={house.location} // House location
-            description={house.description} // Short description of the house
-            date={house.date} // Posted date
+            images={house.images}
+            price={house.price}
+            title={house.title}
+            location={house.location}
+            description={house.description}
+            date={house.date}
+            isLiked={house.isLiked} // Pass isLiked state
+            onToggleLike={(isLiked) => handleToggleLike(house.id, isLiked)} // Pass toggle handler
           />
         ))}
       </div>

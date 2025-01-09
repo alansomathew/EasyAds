@@ -1,25 +1,27 @@
 import React, { useState } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function CustomNavbar() {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const toggleDropdown = () => setShowDropdown(!showDropdown);
+  const closeDropdown = () => setShowDropdown(false);
 
   return (
-    <div>
+    <div style={{ position: "relative", zIndex: 10 }}>
       {/* Navigation Bar */}
       <Navbar
         expand="lg"
         style={{
-          backgroundColor: "#F9FAF7", // Light background color
+          backgroundColor: "#F2F2F2", // Light background color
           width: "100%", // Full width
           height: "53px", // Fixed height
           padding: "16px 64px", // Spacing
           display: "flex",
           alignItems: "center",
-          gap: "24px", // Gap between elements
-          
+          position: "relative",
+          zIndex: 2, // Ensure it's above the dropdown
         }}
       >
         <Container className="d-flex align-items-center" fluid>
@@ -65,6 +67,7 @@ function CustomNavbar() {
                   fontSize: "14px",
                   color: "#000",
                   marginLeft: index === 0 ? "24px" : "16px", // Adjust spacing
+                  fontWeight: "500",
                 }}
               >
                 {item}
@@ -76,17 +79,19 @@ function CustomNavbar() {
 
       {/* Dropdown Menu */}
       {showDropdown && (
-        <div
+          <div
           style={{
             position: "absolute",
-            top: "100%",
+            top: "53px", // Position right below the navbar
             left: "0",
             width: "100%",
             backgroundColor: "#FFD700",
-            zIndex: 1000,
+            zIndex: 1000, // Increased z-index to stay above other content
             padding: "20px 0",
             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+            transition: "all 0.3s ease", // Smooth dropdown animation
           }}
+          onMouseLeave={closeDropdown} // Close dropdown on mouse leave
         >
           <Container
             style={{

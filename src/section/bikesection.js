@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import SectionHeader from "../common/sectionheader"; // Reuse SectionHeader for the title
 import CarCard from "../components/card"; // Reuse CarCard for displaying bikes
 
 const BikeSection = () => {
-  // Mock data for bike cards
-  const bikeData = [
+  // State for bike data
+  const [bikeData, setBikeData] = useState([
     {
       id: 1, // Unique ID for each bike
       images: [
@@ -20,6 +20,7 @@ const BikeSection = () => {
       distance: "35,724",
       owners: "2",
       date: "Sep 23, 2023",
+      isLiked: false,
     },
     {
       id: 2,
@@ -37,6 +38,7 @@ const BikeSection = () => {
       distance: "15,000",
       owners: "1",
       date: "Aug 15, 2023",
+      isLiked: false,
     },
     {
       id: 3,
@@ -55,6 +57,7 @@ const BikeSection = () => {
       distance: "25,000",
       owners: "2",
       date: "Jul 10, 2023",
+      isLiked: false,
     },
     {
       id: 4,
@@ -73,11 +76,21 @@ const BikeSection = () => {
       distance: "10,000",
       owners: "1",
       date: "Jun 5, 2023",
+      isLiked: false,
     },
-  ];
+  ]);
 
   const handleSeeAll = () => {
     console.log("See All Bikes clicked");
+  };
+
+  // Handle like toggle
+  const handleToggleLike = (id, isLiked) => {
+    setBikeData((prevData) =>
+      prevData.map((bike) =>
+        bike.id === id ? { ...bike, isLiked } : bike
+      )
+    );
   };
 
   return (
@@ -94,7 +107,11 @@ const BikeSection = () => {
         }}
       >
         {bikeData.map((bike) => (
-          <CarCard key={bike.id} {...bike} />
+          <CarCard
+            key={bike.id}
+            {...bike}
+            onToggleLike={(isLiked) => handleToggleLike(bike.id, isLiked)} // Pass toggle handler
+          />
         ))}
       </div>
     </div>
