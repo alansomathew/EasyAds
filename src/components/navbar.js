@@ -101,20 +101,44 @@ function CustomNavbar() {
               gap: "20px", // Add spacing between dropdown sections
             }}
           >
-            {/* Dropdown Sections */}
+           {/* First Column: Combined 4 Wheelers, 2 Wheelers, and Other Vehicles */}
+           <div>
+              {[
+                {
+                  title: "4 Wheelers",
+                  items: ["Cars"],
+                },
+                {
+                  title: "2 Wheelers",
+                  items: ["Bikes", "Scooters", "Cycles"],
+                },
+                {
+                  title: "Other Vehicles",
+                  items: ["Auto", "Truck"],
+                },
+              ].map((section, index) => (
+                <div key={index} style={{ marginBottom: "20px" }}>
+                  <h6
+                    style={{
+                      fontWeight: "bold",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    {section.title}
+                  </h6>
+                  <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                    {section.items.map((item, i) => (
+                      <li key={i} style={{ marginBottom: "8px" }}>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+
+            {/* Other Columns: Rent, Sale, and Electronics */}
             {[
-              {
-                title: "4 Wheelers",
-                items: ["Cars"],
-              },
-              {
-                title: "2 Wheelers",
-                items: ["Bikes", "Scooters", "Cycles"],
-              },
-              {
-                title: "Other Vehicles",
-                items: ["Auto", "Truck"],
-              },
               {
                 title: "Rent",
                 items: [
