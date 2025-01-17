@@ -114,7 +114,7 @@ export default function Header() {
               {/* Search Button */}
               <Button
                 style={{
-                  backgroundColor: "#FFD700", // Yellow color
+                  backgroundColor: "#F7B500", // Yellow color
                   border: "none",
                   borderRadius: "50%", // Fully rounded
                   width: "40px", // Circle button size
@@ -154,7 +154,7 @@ export default function Header() {
                 />
                 <Button
                   style={{
-                    backgroundColor: "#FFD700",
+                    backgroundColor: "#F7B500",
                     border: "none",
                     fontWeight: "bold",
                   }}
@@ -184,7 +184,7 @@ export default function Header() {
                 </Button>
                 <Button
                   style={{
-                    backgroundColor: "#FFD700", // Yellow background
+                    backgroundColor: "#F7B500", // Yellow background
                     border: "none",
                     fontWeight: "bold",
                     borderRadius: "16px",

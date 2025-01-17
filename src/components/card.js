@@ -206,7 +206,7 @@ const CarCard = ({
             <h5
               className="m-0"
               style={{
-                fontWeight: "bold",
+                // fontWeight: "bold",
                 fontSize: "18px",
                 color: "#000000",
               }}
@@ -221,18 +221,17 @@ const CarCard = ({
             className="d-flex justify-content-between align-items-center mb-1"
             style={{ fontSize: "14px" }}
           >
-            <span style={{ fontWeight: "bold" }}>{title}</span>
+            <span>{title}</span>
             <span className="text-muted">{`${year} - ${distance} km`}</span>
           </div>
 
           {/* Location and Owners */}
           <div className="d-flex justify-content-between align-items-center">
-            <span className="text-muted small">{location}</span>
-            <span className="text-muted small">{`No. of owners: ${owners}`}</span>
+            <span className="text-muted small"style={{ color: "#717C89" }}>{location}</span>
+            <span className="text-muted small"style={{ color: "#717C89" }}>{`No. of owners: ${owners}`}</span>
           </div>
         </div>
       </div>
-
 
 
       <Modal
@@ -254,7 +253,7 @@ const CarCard = ({
       style={{
         fontWeight: "bold",
         fontSize: "18px",
-        color: "#292D32",
+        color: "#000000",
         textAlign: "center",
         width: "100%",
         margin: "0",

@@ -5,6 +5,8 @@ import ListingPage from './pages/listing';
 import DetailsPage from './pages/details';
 import WishlistPage from './pages/wishlist'; 
 import AdsPage from './pages/ads'; 
+import SellPage from './pages/sell'; 
+import SellDetailsPage from './pages/sell_details'; // Import SellDetailsPage
 
 function App() {
   return (
@@ -22,6 +24,12 @@ function App() {
           <Route path="/wishlist" element={<WishlistPage />} />
 
           <Route path="/ads" element={<AdsPage />} />
+
+          {/* Route for the SellPage */}
+          <Route path="/sell" element={<SellPage />} />
+
+          {/* Route for the SellDetailsPage */}
+          <Route path="/sell_details/:category" element={<SellDetailsPage />} />
 
 
         </Routes>

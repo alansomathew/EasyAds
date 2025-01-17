@@ -29,7 +29,7 @@ function CustomNavbar() {
             {/* All Categories Button */}
             <div
               style={{
-                backgroundColor: "#FFD700", // Yellow background
+                backgroundColor: "#F7B500", // Yellow background
                 width: "200px", // Fixed width
                 height: "53px", // Fixed height
                 padding: "0 24px", // Padding inside button
